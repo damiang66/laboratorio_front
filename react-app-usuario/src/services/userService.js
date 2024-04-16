@@ -1,6 +1,7 @@
 import axios from "axios"
+import { BASE_URL } from "../Url"
 
-const BASE_URL = 'http://localhost:8080/usuarios';
+const url = `${BASE_URL}/usuarios`
 
 const config = () => {
     return {
@@ -13,7 +14,7 @@ const config = () => {
 
 export const findAll = async() => {
     try {
-        const response = await axios.get(BASE_URL);
+        const response = await axios.get(url);
         return response;
     } catch (error) {
         console.error(error);
@@ -24,7 +25,7 @@ export const findAll = async() => {
 export const save = async ({ username, email, password, admin }) => {
     try {
         console.log(admin);
-        return await axios.post(BASE_URL, {
+        return await axios.post(url, {
             username,
             email,
             password,
@@ -38,7 +39,7 @@ export const save = async ({ username, email, password, admin }) => {
 export const update = async({ id, username, email, admin }) => {
     console.log(admin);
     try {
-        return await axios.put(`${BASE_URL}/${id}`, {
+        return await axios.put(`${url}/${id}`, {
             username,
             email,
             admin,
@@ -50,7 +51,7 @@ export const update = async({ id, username, email, admin }) => {
 
 export const remove = async (id) => {
     try {
-        await axios.delete(`${BASE_URL}/${id}`, config());
+        await axios.delete(`${url}/${id}`, config());
     } catch (error) {
         throw error;
     }

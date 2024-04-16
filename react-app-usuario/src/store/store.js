@@ -6,5 +6,6 @@ export const store = configureStore({
     reducer:{
         users:userSlice.reducer,
         auth:authSlice.reducer,
+        clientes:clienteSlice.reducer,
     }
 })

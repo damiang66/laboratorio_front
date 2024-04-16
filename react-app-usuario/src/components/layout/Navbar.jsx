@@ -24,7 +24,7 @@ export const Navbar = () => {
                         {!login.isAdmin ||
                             <li className="nav-item">
                                 <NavLink className="nav-link" to="/users/register">
-                                    Registrar Usuario
+                                   Clientes
                                 </NavLink>
                             </li>
                         }
