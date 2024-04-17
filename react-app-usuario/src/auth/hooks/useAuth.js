@@ -29,7 +29,7 @@ const {user,isAdmin,isAuth}= useSelector(state=>state.auth)
                 user,
             }));
             sessionStorage.setItem('token', `Bearer ${token}`);
-            navigate('/users');
+            navigate('/PaginaPrincipal');
         } catch (error) {
             if (error.response?.status == 401) {
                 Swal.fire('Error Login', 'Username o password invalidos', 'error');
