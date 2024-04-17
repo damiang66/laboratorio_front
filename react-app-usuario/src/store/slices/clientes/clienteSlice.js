@@ -59,6 +59,17 @@ export const clienteSlice = createSlice({
       
         onError:(state,action)=>{
           state.errors=action.payload  
+        },
+        onClienteSelectedForm:(state,action)=>{
+            state.clienteSelected= action.payload;
+            state.visibleForm=true;
+        },
+        onOpenForm:(state)=>{
+            state.visibleForm=true;
+        },
+        onCloseForm:(state)=>{
+            state.visibleForm=false;
+            state.clienteSelected=initialClienteForm;
         }
 
     }
@@ -69,7 +80,10 @@ export const {
     removeCliente,
     updateClientes,
     loadingClientes,
-  
+    onClienteSelectedForm,
     onError,
+    onOpenForm,
+    onCloseForm,
+    clienteSelected,
     
 }=clienteSlice.actions;

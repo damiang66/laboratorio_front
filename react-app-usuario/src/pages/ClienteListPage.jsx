@@ -1,7 +1,46 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import { useClientes } from '../hooks/useClientes';
+import { useAuth } from '../auth/hooks/useAuth';
+import { ClienteModalForm } from '../components/Cliente/ClienteModalForm';
+import { ClienteList } from '../components/Cliente/ClienteList';
 
 export const ClienteListPage = () => {
-  return (
-    <div>ClienteListPage</div>
-  )
+  const {
+    clientes,
+    visibleForm,
+    handlerOpenForm,
+    getClientes,
+} = useClientes();
+
+const { login } = useAuth();;
+
+useEffect(() => {
+    getClientes();
+}, []);
+
+return (
+    <>
+
+        {!visibleForm ||
+            <ClienteModalForm />}
+        <div className="container my-4">
+            <h2>Laboratorio app</h2>
+            <div className="row">
+                <div className="col">
+                    {(visibleForm || !login.isAdmin) || <button
+                        className="btn btn-primary my-2"
+                        onClick={handlerOpenForm}>
+                        Nuevo Cliente
+                    </button>}
+
+                    {
+                        clientes.length === 0
+                            ? <div className="alert alert-warning">No hay clientes en el sistema!</div>
+                            : <ClienteList />
+                    }
+                </div>
+            </div>
+        </div>
+    </>
+);
 }

@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../auth/hooks/useAuth";
 import { CLienteFIndAll, ClienteDelete, ClienteSave, ClienteUpdate } from "../services/clienteService";
-import { addCliente, loadingClientes, removeCliente, updateClientes } from "../store/slices/clientes/clienteSlice";
+import { addCliente, loadingClientes, onClienteSelectedForm, onCloseForm, onError, onOpenForm, removeCliente, updateClientes } from "../store/slices/clientes/clienteSlice";
 
 const inicialCLiente = [];
 
@@ -11,9 +11,9 @@ const inicialCLiente = [];
 
 
 export const useClientes = () => {
-  
-   const {clientes,errors}= useSelector(state=>state.clientes)
-   const dispatch= useDispatch();
+
+    const { clientes, errors, clienteSelected, visibleForm } = useSelector(state => state.clientes)
+    const dispatch = useDispatch();
 
 
 
@@ -24,16 +24,16 @@ export const useClientes = () => {
 
     const getClientes = async () => {
         try {
-            
-       
-        const result = await CLienteFIndAll();
-        console.log(result);
-        dispatch(loadingClientes(result.data));
-          
-     } catch (error) {
-            
+
+
+            const result = await CLienteFIndAll();
+            console.log(result);
+            dispatch(loadingClientes(result.data));
+
+        } catch (error) {
+
+        }
     }
-}
 
     const handlerAddClientes = async (cliente) => {
         // console.log(user);
@@ -51,7 +51,7 @@ export const useClientes = () => {
                 dispatch(updateClientes(response.data))
             }
 
-            
+
 
             Swal.fire(
                 (cliente.id === 0) ?
@@ -62,12 +62,12 @@ export const useClientes = () => {
                     'El cliente ha sido actualizado con exito!',
                 'success'
             );
-           // handlerCloseForm();
+            handlerCloseForm();
             navigate('/clientes');
         } catch (error) {
             if (error.response && error.response.status == 400) {
-               dispatch( onError(error.response.data));
-            
+                dispatch(onError(error.response.data));
+
             } else if (error.response?.status == 401) {
                 handlerLogout();
             } else {
@@ -76,7 +76,7 @@ export const useClientes = () => {
         }
     }
 
-    const handlerRemoveUser = (id) => {
+    const handlerRemoveCliente = (id) => {
         // console.log(id);
 
         if (!login.isAdmin) return;
@@ -89,7 +89,7 @@ export const useClientes = () => {
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
             confirmButtonText: 'Si, eliminar!'
-        }).then( async(result) => {
+        }).then(async (result) => {
             if (result.isConfirmed) {
 
                 try {
@@ -110,20 +110,37 @@ export const useClientes = () => {
 
     }
 
-  
+    const handlerClienteSelectedForm = (cliente) => {
 
-  
+        dispatch(onClienteSelectedForm({ ...cliente }))
+    }
 
-    
+    const handlerOpenForm = () => {
+
+        dispatch(onOpenForm())
+    }
+
+    const handlerCloseForm = () => {
+        dispatch(onCloseForm())
+        dispatch(onError({}));
+    }
+
+
+
+
     return {
         clientes,
-        
+
         inicialCLiente,
-        
+        handlerOpenForm,
+        handlerCloseForm,
+        visibleForm,
+        clienteSelected,
+
         errors,
         handlerAddClientes,
-        handlerRemoveUser,
-       
+        handlerRemoveCliente,
+        handlerClienteSelectedForm,
         getClientes,
     }
 }
