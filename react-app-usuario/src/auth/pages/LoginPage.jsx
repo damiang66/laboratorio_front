@@ -2,7 +2,7 @@ import { useContext, useState } from "react";
 import Swal from "sweetalert2";
 
 import { useAuth } from './../hooks/useAuth';
-
+import imagen from '../../assets/principal.png'
 const initialLoginForm = {
     username: '',
     password: '',
@@ -38,13 +38,13 @@ export const LoginPage = () => {
             <div className="modal-dialog">
                 <div className="modal-content">
                     <div className="modal-header">
-                        <h5 className="modal-title">Login Page</h5>
+                        <h5 className="modal-title">Laboratorio App</h5>
                     </div>
                     <form onSubmit={ onSubmit }>
                         <div className="modal-body">
                             <input
                                 className="form-control my-3 w-75"
-                                placeholder="Username"
+                                placeholder="Nombre de Usuario"
                                 name="username"
                                 value={username}
                                 onChange={ onInputChange }
@@ -52,7 +52,7 @@ export const LoginPage = () => {
                             
                             <input
                                 className="form-control my-3 w-75"
-                                placeholder="Password"
+                                placeholder="Contraseña"
                                 type="password"
                                 name="password"
                                 value={password}
@@ -63,12 +63,14 @@ export const LoginPage = () => {
                             <button
                                 className="btn btn-primary"
                                 type="submit">
-                                Login
+                                Ingresar
                             </button>
                         </div>
                     </form>
                 </div>
+                <img src={imagen} alt="" />
             </div>
+          
         </div>
     );
 

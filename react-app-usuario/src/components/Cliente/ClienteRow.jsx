@@ -1,6 +1,7 @@
 import React from 'react'
 import { useClientes } from '../../hooks/useClientes';
 import { useAuth } from '../../auth/hooks/useAuth';
+import { NavLink } from 'react-router-dom';
 
 export const ClienteRow = ({id,nombre,dni,edad,telefono,cargo,direccion,email}) => {
     const { handlerClienteSelectedForm, handlerRemoveCliente } = useClientes();
@@ -36,6 +37,15 @@ export const ClienteRow = ({id,nombre,dni,edad,telefono,cargo,direccion,email}) 
                         >
                             Editar
                         </button>
+                    </td>
+                    <td> 
+                    <NavLink
+                          
+                            className="btn btn-danger btn-sm"
+                           to={"/certificado/registrar"}
+                        >
+                            Crear Certificado
+                        </NavLink>
                     </td>
                    
                     <td>

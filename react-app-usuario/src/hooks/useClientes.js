@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useAuth } from "../auth/hooks/useAuth";
 import { CLienteFIndAll, ClienteDelete, ClienteSave, ClienteUpdate } from "../services/clienteService";
 import { addCliente, loadingClientes, onClienteSelectedForm, onCloseForm, onError, onOpenForm, removeCliente, updateClientes } from "../store/slices/clientes/clienteSlice";
+import Swal from "sweetalert2";
 
 const inicialCLiente = [];
 

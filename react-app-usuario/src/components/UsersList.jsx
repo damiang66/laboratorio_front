@@ -15,12 +15,12 @@ export const UsersList = () => {
             <thead>
                 <tr>
                     <th>#</th>
-                    <th>username</th>
+                    <th>Nombre de Usuario</th>
                     <th>email</th>
                     {!login.isAdmin || <>
-                        <th>update</th>
-                        <th>update route</th>
-                        <th>remove</th>
+                        <th>editar</th>
+                        <th>editar route</th>
+                        <th>eliminar</th>
                     </>}
                 </tr>
             </thead>
