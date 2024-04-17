@@ -47,3 +47,10 @@ export const ClienteDelete = async(id)=>{
         return error;
     }
 }
+export const ClienteFIndByNombre = async(nombre)=>{
+    try {
+        return await axios.get(`${url}/nombre/${nombre}`,config());
+    } catch (error) {
+        return error;
+    }
+}

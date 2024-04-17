@@ -7,6 +7,7 @@ import { useAuth } from "../auth/hooks/useAuth"
 import { PrincipalPage } from "../pages/PrincipalPage"
 import { ClienteRegistroPage } from "../pages/ClienteRegistroPage"
 import { ClienteListPage } from "../pages/ClienteListPage"
+import { CertificadoForm } from "../components/certificado/CertificadoForm"
 
 
 export const UserRoutes = () => {
@@ -26,6 +27,7 @@ export const UserRoutes = () => {
                         <Route path="clientes/registrar" element={<ClienteRegistroPage />} />
                         <Route path="clientes" element={<ClienteListPage />} />
                         <Route path="clientes/editar/:id" element={<ClienteRegistroPage />} />
+                        <Route path="certificado/registrar" element={<CertificadoForm />} />
                     </>
                     }
                     <Route path="/" element={<Navigate to="/PaginaPrincipal" />} />

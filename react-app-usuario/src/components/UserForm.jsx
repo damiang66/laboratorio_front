@@ -58,6 +58,7 @@ export const UserForm = ({ userSelected, handlerCloseForm }) => {
         // console.log(userForm);
 
         // guardar el user form en el listado de usuarios
+        console.log(userForm);
         handlerAddUser(userForm);
     }
 

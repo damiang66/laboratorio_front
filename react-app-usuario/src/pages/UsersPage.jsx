@@ -26,7 +26,7 @@ export const UsersPage = () => {
             {!visibleForm ||
                 <UserModalForm />}
             <div className="container my-4">
-                <h2>Users App</h2>
+                <h2>Laboratorio App</h2>
                 <div className="row">
                     <div className="col">
                         {(visibleForm || !login.isAdmin) || <button
