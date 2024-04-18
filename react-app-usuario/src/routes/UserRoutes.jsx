@@ -8,8 +8,8 @@ import { PrincipalPage } from "../pages/PrincipalPage"
 import { ClienteRegistroPage } from "../pages/ClienteRegistroPage"
 import { ClienteListPage } from "../pages/ClienteListPage"
 import { CertificadoForm } from "../components/certificado/CertificadoForm"
-
-
+import { CertificadoListPage } from "../pages/CertificadoListPage"
+import { CertificadoRegistroPage } from "../pages/CertificadoRegistroPage"
 export const UserRoutes = () => {
     const { login } = useAuth();;
     return (
@@ -27,7 +27,10 @@ export const UserRoutes = () => {
                         <Route path="clientes/registrar" element={<ClienteRegistroPage />} />
                         <Route path="clientes" element={<ClienteListPage />} />
                         <Route path="clientes/editar/:id" element={<ClienteRegistroPage />} />
-                        <Route path="certificado/registrar" element={<CertificadoForm />} />
+
+                        <Route path="certificados/registrar" element={<CertificadoRegistroPage />} />
+                        <Route path="certificados" element={<CertificadoListPage />} />
+                        <Route path="certificados/editar/:id" element={<CertificadoRegistroPage />} />
                     </>
                     }
                     <Route path="/" element={<Navigate to="/PaginaPrincipal" />} />

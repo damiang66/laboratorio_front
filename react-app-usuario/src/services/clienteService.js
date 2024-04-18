@@ -30,14 +30,14 @@ export const ClienteSave = async(cliente)=>{
     try {
         return await axios.post(url,cliente,config());
     } catch (error) {
-        return error;
+        throw error;
     }
 }
 export const ClienteUpdate = async(cliente)=>{
     try {
         return await axios.put(`${url}/${cliente.id}`,cliente,config());
     } catch (error) {
-        return error;
+        throw error;
     }
 }
 export const ClienteDelete = async(id)=>{
