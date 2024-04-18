@@ -42,7 +42,7 @@ export const ClienteRow = ({id,nombre,dni,edad,telefono,cargo,direccion,email}) 
                     <NavLink
                           
                             className="btn btn-danger btn-sm"
-                           to={"/certificado/registrar"}
+                           to={"/certificados/registrar"}
                         >
                             Crear Certificado
                         </NavLink>

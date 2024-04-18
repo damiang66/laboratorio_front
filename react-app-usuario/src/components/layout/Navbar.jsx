@@ -30,6 +30,15 @@ export const Navbar = () => {
                                    Clientes
                                 </NavLink>
                             </li>
+                            
+                        }
+                        {!login.isAdmin ||
+                            <li className="nav-item">
+                                <NavLink className="nav-link" to="/certificados">
+                                   Certificados
+                                </NavLink>
+                            </li>
+                            
                         }
                     </ul>
                 </div>

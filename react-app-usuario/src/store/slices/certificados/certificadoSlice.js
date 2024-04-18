@@ -1,44 +1,58 @@
 import { createSlice } from "@reduxjs/toolkit";
-export const initialClienteForm = {
+export const inititialCertificadoForm = {
     id: 0,
-    nombre: '',
-    dni: '',
-    edad: '',
-    telefono: '',
-    cargo:'',
-    direccion:'',
-    email:''
+    certificadoNumero: '',
+    fecha: '',
+    ciudad: '',
+    departamento: '',
+    empresa:'',
+    cliente:{},
+    coprologico:'',
+    coproCultivo:'',
+    cultivo:'',
+    koh:'',
+    diagnostico:'',
+    concepto:''
 }
 const initialErrors = {
-    nombre: '',
-    dni: '',
-    email: '',
+    certificadoNumero: '',
+    fecha: '',
+    ciudad: '',
+    departamento: '',
+    empresa:'',
+   
+    coprologico:'',
+    coproCultivo:'',
+    cultivo:'',
+    koh:'',
+    diagnostico:'',
+    concepto:'',
 }
 export const certificadoSlice = createSlice({
-    name: 'clientes',
+    name: 'certificados',
     initialState:{
-        clientes:[],
-        clienteSelected:initialClienteForm,
+        certificados:[],
+        certificadoSelected:inititialCertificadoForm,
         visibleForm:false,
         errors:initialErrors,
     },
     reducers:{
-        addCliente:(state,action)=>{
-            state.clientes=[
-                ...state.clientes,
+        addCertificados:(state,action)=>{
+            state.certificados=[
+                ...state.certificados,
                 {
                     ...action.payload,
                 }
             ];
-            state.clienteSelected=initialClienteForm;
+            state.certificadoSelected=inititialCertificadoForm;
             state.visibleForm=false;
            
         },
-        removeCliente:(state,action)=>{
-            state.clientes= state.clientes.filter(u=>u.id !== action.payload)
+        removeCertificados:(state,action)=>{
+            state.certificados= state.certificados.filter(u=>u.id !== action.payload)
         },
-        updateClientes:(state,action)=>{
-            state.clientes=state.clientes.map(u => {
+        updateCertificados:(state,action)=>{
+            state.certificados=state.certificados.map(u => {
                 //console.log(u.password)
                 if (u.id === action.payload.id) {
                     return {
@@ -49,19 +63,19 @@ export const certificadoSlice = createSlice({
              
                 return u;
             })
-            state.clienteSelected=initialClienteForm;
+            state.certificadoSelected=inititialCertificadoForm;
             state.visibleForm=false;
         },
-        loadingClientes:(state,action)=>{
-            state.clientes = action.payload
+        loadingCertificados:(state,action)=>{
+            state.certificados = action.payload
         },
      
       
         onError:(state,action)=>{
           state.errors=action.payload  
         },
-        onClienteSelectedForm:(state,action)=>{
-            state.clienteSelected= action.payload;
+        onCertificadoSelectedForm:(state,action)=>{
+            state.certificadoSelected= action.payload;
             state.visibleForm=true;
         },
         onOpenForm:(state)=>{
@@ -69,21 +83,21 @@ export const certificadoSlice = createSlice({
         },
         onCloseForm:(state)=>{
             state.visibleForm=false;
-            state.clienteSelected=initialClienteForm;
+            state.certificadoSelected=inititialCertificadoForm;
         }
 
     }
    
 });
 export const {
-    addCliente,
-    removeCliente,
-    updateClientes,
-    loadingClientes,
-    onClienteSelectedForm,
+    addCertificados,
+    removeCertificados,
+    updateCertificados,
+    loadingCertificados,
+    onCertificadoSelectedForm,
     onError,
     onOpenForm,
     onCloseForm,
-    clienteSelected,
+    certificadoSelected,
     
 }=certificadoSlice.actions;
