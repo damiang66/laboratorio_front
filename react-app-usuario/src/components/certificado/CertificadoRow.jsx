@@ -2,6 +2,7 @@ import React from 'react'
 import { useAuth } from '../../auth/hooks/useAuth';
 import { useCertificados } from '../../hooks/useCertificados';
 import { NavLink } from 'react-router-dom';
+import CertificadoPDF from './CertificadoPdf';
 
 export const CertificadoRow = ({id, certificadoNumero, fecha, ciudad, departamento, empresa, cliente, coprologico, coproCultivo, cultivo, koh, diagnostico, concepto}) => {
   const { handlerCertificadoSelectedForm, handlerRemoveCertificados } = useCertificados();
@@ -32,13 +33,14 @@ export const CertificadoRow = ({id, certificadoNumero, fecha, ciudad, departamen
                       </NavLink>
                   </td>
                   <td>
-                      <button
+                      <NavLink
                           type="button"
                           className="btn btn-success btn-sm"
-                         
+                         to={"/certificados/imprimir/"+ id}
                       >
                           imprimir
-                      </button>
+                      </NavLink>
+                    
                   </td>
                   
                  <td>
