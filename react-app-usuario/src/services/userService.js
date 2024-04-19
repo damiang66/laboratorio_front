@@ -56,3 +56,10 @@ export const remove = async (id) => {
         throw error;
     }
 }
+export const UsuarioFindByNombre = async(nombre)=>{
+    try {
+        return await axios.get(`${url}/nombre/${nombre}`, config());
+    } catch (error) {
+        throw error;
+    }
+}
