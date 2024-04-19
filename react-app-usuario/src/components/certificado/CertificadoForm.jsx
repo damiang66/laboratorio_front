@@ -1,21 +1,29 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useCertificados } from '../../hooks/useCertificados';
 import { useClientes } from "../../hooks/useClientes";
 import { NavLink, useParams } from "react-router-dom";
 import jsPDF from 'jspdf';
+import html2canvas from "html2canvas";
+import { useUsers } from "../../hooks/useUsers";
+import { formToJSON } from "axios";
+import { useSelector } from "react-redux";
+import { UsuarioFindByNombre } from "../../services/userService";
 
 export const CertificadoForm = ({ certificadoSelected }) => {
+  const {user}= useSelector(state=>state.auth)
   const { id } = useParams();
+  const{getUsers,users}=useUsers()
   const { inicialCertificado, handlerAddCertificados, errors, handlerCloseForm } = useCertificados();
   const { clientes, getClientes } = useClientes();
   const [clienteSeleccionadoId, setClienteSeleccionadoId] = useState('');
-  
+  let usuario = JSON.stringify(sessionStorage.getItem('login'))
   const [clienteSeleccionado, setClienteSeleccionado] = useState({});
   const [certificadoForm, setCertificadoForm] = useState({
     ...inicialCertificado,
-    cliente: {} // Inicializamos el cliente como un objeto vacío
+    cliente: {}, // Inicializamos el cliente como un objeto vacío
+    
   });
-
+const[u,setU]=useState({})
   useEffect(() => {
     // Actualizamos el estado del formulario cuando el certificado seleccionado cambie
     setCertificadoForm({
@@ -34,15 +42,33 @@ export const CertificadoForm = ({ certificadoSelected }) => {
   useEffect(() => {
     // Obtenemos la lista de clientes al montar el componente
     getClientes();
+    getUsers()
+   
+ // usuario = JSON.parse(usuario);
+  
+ usuario = user?.username
+console.log(usuario); 
+  traerUsuario(usuario);
+ // console.log(u);
   }, []);
-
+const traerUsuario = async (usuario)=>{
+  try {
+    const respuesta = await UsuarioFindByNombre(usuario);
+    setU(respuesta?.data)
+    
+  } catch (error) {
+    console.log(error);
+  }
+}
   const handleClienteChange = (event) => {
+    
     const selectedClientId = event.target.value;
     const selectedClient = clientes.find(c => c.id === selectedClientId);
     setClienteSeleccionado(selectedClient || {}); // Actualizamos el cliente seleccionado
     setCertificadoForm({
       ...certificadoForm,
-      idCliente: selectedClientId // Actualizamos el cliente en el formulario
+      idCliente: selectedClientId,// Actualizamos el cliente en el formulario
+      usuario:u?.id
     });
   };
   
@@ -57,25 +83,34 @@ export const CertificadoForm = ({ certificadoSelected }) => {
 
   const onSubmit = (event) => {
     event.preventDefault();
-    console.log(certificadoForm);
+    //console.log(certificadoForm);
+    console.log(u?.id);
+  
+   console.log(certificadoForm);
     handlerAddCertificados(certificadoForm);
-    generatePDF(certificadoForm)
+    
   };
 
   const onCloseForm = () => {
     handlerCloseForm();
     setCertificadoForm(inicialCertificado);
   };
-  const generatePDF = (formData) => {
-    const doc = new jsPDF ();
-    // Añade el contenido al PDF utilizando los datos del formulario
-    doc.text(20, 20, `Número de Certificado: ${formData.certificadoNumero}`);
-    doc.text(20, 30, `Fecha: ${formData.fecha}`);
-    doc.text(20, 40, `Ciudad: ${formData.ciudad}`);
-    // Continúa añadiendo los campos restantes
-    // ...
-    // Guarda el PDF
-    doc.save('certificado.pdf');
+  // imprimir en pdf
+  const contentRef = useRef(null);
+
+  const printToPdf = () => {
+    const content = contentRef.current;
+
+    html2canvas(content).then((canvas) => {
+      const imgData = canvas.toDataURL("image/png");
+      const pdf = new jsPDF({
+        orientation: "landscape",
+      });
+      const imgWidth = pdf.internal.pageSize.getWidth();
+      const imgHeight = (canvas.height * imgWidth) / canvas.width;
+      pdf.addImage(imgData, "PNG", 0, 0, imgWidth, imgHeight);
+      pdf.save("screenshot.pdf");
+    });
   };
 
   return (
@@ -230,6 +265,9 @@ export const CertificadoForm = ({ certificadoSelected }) => {
       <input type="hidden"
         name="id"
         value={certificadoForm.id} />
+         <input type="hidden"
+        name="usuario"
+        value={certificadoForm.usuario} />
 
       <button
         className="btn btn-primary"
@@ -246,6 +284,7 @@ export const CertificadoForm = ({ certificadoSelected }) => {
         >
           volver
         </NavLink>
+        <button className="btn btn-success" type="button" onClick={printToPdf}>Imprimir a PDF</button>
     </form>
     </>
   );
