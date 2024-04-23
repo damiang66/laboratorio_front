@@ -64,7 +64,9 @@ console.log(certificado.id);
 
             } else if (error.response?.status == 401) {
                 handlerLogout();
-            } else {
+            } else if (error.response?.status ==403) {
+               Swal.fire('Error', 'Ingrese bien los datos ', 'error')
+            }else{
                 throw error;
             }
         }

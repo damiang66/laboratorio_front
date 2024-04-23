@@ -3,12 +3,30 @@ import Swal from "sweetalert2";
 
 import { useAuth } from './../hooks/useAuth';
 import imagen from '../../assets/principal.png'
+import { StyleSheet } from "@react-pdf/renderer";
 const initialLoginForm = {
     username: '',
     password: '',
 }
 export const LoginPage = () => {
-
+const styles = StyleSheet.create({
+    modal:{
+        display: 'block', 
+       
+    },
+    container :{
+        position: 'relative',
+        width: '100%',
+        height: '300px', /* O ajusta la altura según sea necesario */
+      },
+      
+       img: {
+        position: 'absolute',
+        bottom: 0,
+        left: 0.,
+        width: '100%,',
+      }
+})
     const { handlerLogin } = useAuth();;
     
     const [loginForm, setLoginForm] = useState(initialLoginForm);
@@ -34,7 +52,7 @@ export const LoginPage = () => {
         setLoginForm(initialLoginForm);
     }
     return (
-        <div className="modal" style={ {display: 'block'} } tabIndex="-1">
+        <div className="modal" style={ styles.modal } tabIndex="-1">
             <div className="modal-dialog">
                 <div className="modal-content">
                     <div className="modal-header">
@@ -68,7 +86,10 @@ export const LoginPage = () => {
                         </div>
                     </form>
                 </div>
-                <img src={imagen} alt="" />
+                <div style={styles.container}>
+                <img style={styles.img} src={imagen} alt="" />
+                </div>
+                
             </div>
           
         </div>
