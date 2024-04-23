@@ -3,6 +3,8 @@ import { useAuth } from '../../auth/hooks/useAuth';
 import { useCertificados } from '../../hooks/useCertificados';
 import { NavLink } from 'react-router-dom';
 import CertificadoPDF from './CertificadoPdf';
+import { faEye, faPen, faPrint, faTrash } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 export const CertificadoRow = ({id, certificadoNumero, fecha, ciudad, departamento, empresa, cliente, coprologico, coproCultivo, cultivo, koh, diagnostico, concepto}) => {
   const { handlerCertificadoSelectedForm, handlerRemoveCertificados } = useCertificados();
@@ -29,7 +31,7 @@ export const CertificadoRow = ({id, certificadoNumero, fecha, ciudad, departamen
                           className="btn btn-secondary btn-sm"
                        
                       >
-                          Editar
+                            <FontAwesomeIcon icon={faPen} />
                       </NavLink>
                   </td>
                   <td>
@@ -38,19 +40,23 @@ export const CertificadoRow = ({id, certificadoNumero, fecha, ciudad, departamen
                           className="btn btn-success btn-sm"
                          to={"/certificados/imprimir/"+ id}
                       >
-                          imprimir
+                         <FontAwesomeIcon icon={faPrint} />
                       </NavLink>
                     
                   </td>
-                  
+                  <td>
+
+                  <FontAwesomeIcon icon={faEye} />
+                  </td>
                  <td>
-                      <button
+                      <FontAwesomeIcon
+                      icon={faTrash}
                           type="button"
                           className="btn btn-danger btn-sm"
                           onClick={() => handlerRemoveCertificados(id)}
-                      >
-                          eliminar
-                      </button>
+                     / >
+                        
+                     
                   </td>
               </>
           }
