@@ -40,23 +40,21 @@ export const CertificadoRow = ({id, certificadoNumero, fecha, ciudad, departamen
                           className="btn btn-success btn-sm"
                          to={"/certificados/imprimir/"+ id}
                       >
-                         <FontAwesomeIcon icon={faPrint} />
+                      <FontAwesomeIcon icon={faPrint} />
                       </NavLink>
                     
                   </td>
                   <td>
-
                   <FontAwesomeIcon icon={faEye} />
                   </td>
                  <td>
-                      <FontAwesomeIcon
-                      icon={faTrash}
+                 <FontAwesomeIcon icon={faTrash} 
                           type="button"
                           className="btn btn-danger btn-sm"
                           onClick={() => handlerRemoveCertificados(id)}
-                     / >
-                        
-                     
+                      />
+                         
+                      
                   </td>
               </>
           }
