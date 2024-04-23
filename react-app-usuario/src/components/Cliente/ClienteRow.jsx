@@ -2,6 +2,8 @@ import React from 'react'
 import { useClientes } from '../../hooks/useClientes';
 import { useAuth } from '../../auth/hooks/useAuth';
 import { NavLink } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCircleCheck, faCoffee, faDeleteLeft, faPen, faSquarePlus, faTrash } from '@fortawesome/free-solid-svg-icons';
 
 export const ClienteRow = ({id,nombre,dni,edad,telefono,cargo,direccion,email}) => {
     const { handlerClienteSelectedForm, handlerRemoveCliente } = useClientes();
@@ -21,41 +23,35 @@ export const ClienteRow = ({id,nombre,dni,edad,telefono,cargo,direccion,email}) 
             {!login.isAdmin ||
                 <>
                     <td>
-                        <button
-                            type="button"
-                            className="btn btn-secondary btn-sm"
-                            onClick={() => handlerClienteSelectedForm({
-                                id,
-                                nombre,
-                                dni,
-                                edad,
-                                telefono,
-                                cargo,
-                                direccion,
-                                email
-                            })}
-                        >
-                            Editar
-                        </button>
+                    <FontAwesomeIcon icon={faPen} 
+                     onClick={() => handlerClienteSelectedForm({
+                        id,
+                        nombre,
+                        dni,
+                        edad,
+                        telefono,
+                        cargo,
+                        direccion,
+                        email
+                    })}
+                    />
+                      
                     </td>
                     <td> 
                     <NavLink
+                   
                           
-                            className="btn btn-danger btn-sm"
-                           to={"/certificados/registrar"}
+                            
+                           to={"/certificados/cliente/"+id}
                         >
-                            Crear Certificado
+                           <FontAwesomeIcon icon={faSquarePlus} />
                         </NavLink>
                     </td>
                    
                     <td>
-                        <button
-                            type="button"
-                            className="btn btn-danger btn-sm"
-                            onClick={() => handlerRemoveCliente(id)}
-                        >
-                            eliminar
-                        </button>
+                    <FontAwesomeIcon className='btn btn-danger btn-sm' onClick={() => handlerRemoveCliente(id)} icon={faTrash} />
+                      
+                       
                     </td>
                 </>
             }

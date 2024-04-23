@@ -7,6 +7,7 @@ export const inititialCertificadoForm = {
     departamento: '',
     empresa:'',
     cliente:{},
+    idCliente:0,
     usuario:0,
     coprologico:'',
     coproCultivo:'',

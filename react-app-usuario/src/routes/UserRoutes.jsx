@@ -33,6 +33,7 @@ export const UserRoutes = () => {
                         <Route path="certificados" element={<CertificadoListPage />} />
                         <Route path="certificados/editar/:id" element={<CertificadoRegistroPage />} />
                         <Route path="certificados/imprimir/:id" element={<CertificadoPDF />} />
+                        <Route path="certificados/cliente/:clienteId" element={<CertificadoRegistroPage />} />
                     </>
                     }
                     <Route path="/" element={<Navigate to="/PaginaPrincipal" />} />

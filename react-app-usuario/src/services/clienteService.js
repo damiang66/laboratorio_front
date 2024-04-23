@@ -21,7 +21,9 @@ export const CLienteFIndAll= async()=>{
 }
 export const ClienteFindById = async(id)=>{
     try {
-        return await axios.get(`${url}/${id}`,config());
+        const respuesta =await axios.get(`${url}/${id}`,config());
+        console.log(' DESDE EL SERVICIO DE CLIENTE ' + JSON.stringify(respuesta?.data));
+        return respuesta;
     } catch (error) {
         return error;
     }
