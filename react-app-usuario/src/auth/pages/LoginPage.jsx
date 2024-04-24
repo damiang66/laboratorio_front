@@ -4,6 +4,8 @@ import Swal from "sweetalert2";
 import { useAuth } from './../hooks/useAuth';
 import imagen from '../../assets/principal.png'
 import { StyleSheet } from "@react-pdf/renderer";
+import { faDoorOpen } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 const initialLoginForm = {
     username: '',
     password: '',
@@ -81,7 +83,7 @@ const styles = StyleSheet.create({
                             <button
                                 className="btn btn-primary"
                                 type="submit">
-                                Ingresar
+                               <FontAwesomeIcon icon={faDoorOpen} />
                             </button>
                         </div>
                     </form>

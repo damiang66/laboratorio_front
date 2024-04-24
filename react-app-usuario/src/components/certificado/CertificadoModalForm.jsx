@@ -1,8 +1,10 @@
 import React from 'react'
 import { useCertificados } from '../../hooks/useCertificados';
 import { CertificadoForm } from './CertificadoForm';
+import { StyleSheet } from '@react-pdf/renderer';
 export const CertificadoModalForm = () => {
     const { certificadoSelected, handlerCloseForm } = useCertificados();
+   
     return (
         <div className="abrir-modal animacion fadeIn">
             <div className="modal " style={{ display: "block" }} tabIndex="-1">

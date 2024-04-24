@@ -5,10 +5,17 @@ import { useAuth } from "../../auth/hooks/useAuth";
 import imagen from '../../assets/principal.png'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft, faStamp, faUpRightAndDownLeftFromCenter, faUser, faUserGroup, faVialVirus } from "@fortawesome/free-solid-svg-icons";
+import { StyleSheet } from "@react-pdf/renderer";
 
 export const Navbar = () => {
 
     const { login, handlerLogout } = useAuth();
+    const styles = StyleSheet.create({
+        imagen:{
+            justifyContent: 'flex-end',  
+         
+        }
+    })
     return (
         <>
         <nav className="navbar navbar-expand-lg bg-body-tertiary">
@@ -60,7 +67,7 @@ export const Navbar = () => {
             </div>
         
         </nav>
-            <img src={imagen} alt="" />
+            <img style={styles.imagen} src={imagen} alt="" />
             </>
     );
 }

@@ -30,7 +30,7 @@ export const CertificadoList = () => {
                   {!login.isAdmin || <>
                   
                       <th>editar</th>
-                      <th>imprimir</th>
+                      
                       <th>Ver</th>
                       <th>eliminar</th>
                   </>}
