@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { StyleSheet } from '@react-pdf/renderer';
 import React, { useEffect } from 'react'
 import Swal from 'sweetalert2';
+import { generarPDF, generarPDFCarnet, generarPDFMedico } from '../../services/pdfService';
 
 export const CertificadosVer = ({ isOpen, onClose, certificado }) => {
     const styles = StyleSheet.create({
@@ -13,10 +14,16 @@ export const CertificadosVer = ({ isOpen, onClose, certificado }) => {
     useEffect(() => {
         console.log(certificado);
     }, [])
+    const todo = async(id)=>{
+      await  generarPDF(id)
+      await generarPDFCarnet(id)
+      await generarPDFMedico(id)
+    }
     if (!isOpen) return null;
     const reparacion = ()=>{
         Swal.fire('Pagina en Construccion', 'Esta seccion se Encuentra en desarrollo', 'success')
     }
+  
     return (
         <div className="abrir-modal animacion fadeIn">
             <div className="modal " style={{ display: "block" }} tabIndex="-1">
@@ -49,24 +56,24 @@ export const CertificadosVer = ({ isOpen, onClose, certificado }) => {
                                     </tr>
                                     <tr>
                                        
-                                        <th style={styles.thhead} scope="col">imprimir Todo <FontAwesomeIcon  onClick={()=>reparacion()} icon={faPrint} /></th>
+                                        <th style={styles.thhead} scope="col">imprimir Todo <FontAwesomeIcon onClick={()=>todo(certificado.id)}  icon={faPrint} /></th>
                                        
                                     </tr>
 
                                 </tbody>
                                 <tfooter>
                                     <tr>
-                                    <th scope="col">Carnet <FontAwesomeIcon onClick={()=>reparacion()} icon={faPrint} /></th>
+                                    <th scope="col">Carnet <FontAwesomeIcon  onClick={()=>generarPDFCarnet(certificado.id)} icon={faPrint} /></th>
                                        
                                     
                                     </tr>
                                     <tr>
                                                                            
-                                        <th scope="col">Certificado  <FontAwesomeIcon  onClick={()=>reparacion()} icon={faPrint} />  </th>
+                                        <th scope="col">Certificado  <FontAwesomeIcon  onClick={()=>generarPDF(certificado.id)} icon={faPrint} />  </th>
                                                                            
                                             </tr>
                                             <tr>
-                                            <th scope="col">Certificado Medico <FontAwesomeIcon  onClick={()=>reparacion()} icon={faPrint} /></th>
+                                            <th scope="col">Certificado Medico <FontAwesomeIcon onClick={()=>generarPDFMedico(certificado.id)} icon={faPrint} /></th>
                                             </tr>
                                 </tfooter>
                             </table>

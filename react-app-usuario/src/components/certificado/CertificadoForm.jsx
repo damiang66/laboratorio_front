@@ -285,6 +285,11 @@ clienteLista.forEach(c=>{
               <option value="Apto sin restriccion">Apto sin restriccion</option>
               <option value="Apto con restriccion que no interfieren en la labor">Apto con restriccion que no interfieren en la labor</option>
               <option value="Apto para trabajar en alturas">Apto para trabajar en alturas</option>
+              <option value="Apto para manipulacion de alimentos">Apto para manipulacion de alimentos"</option>
+              <option value="Examen de retiro satisfactorio">Examen de retiro satisfactorio</option>
+              <option value="Examen de retiro no satisfactorio">Examen de retiro no satisfactorio</option>
+              <option value="Apto con restriccion que no interfieren en la labor 1">Apto con restriccion que no interfieren en la labor 1</option>
+              <option value="Aplazado">Aplazado</option>
             </select>
           </div>
         </div>
