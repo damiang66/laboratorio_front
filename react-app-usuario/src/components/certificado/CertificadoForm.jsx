@@ -309,7 +309,7 @@ clienteLista.forEach(c=>{
           volver
         </NavLink>
 
-        <button className="btn btn-success" type="button" onClick={printToPdf}>Imprimir a PDF</button>
+      
       </form>
     </>
   );
