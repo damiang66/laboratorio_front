@@ -11,6 +11,7 @@ import { CertificadoForm } from "../components/certificado/CertificadoForm"
 import { CertificadoListPage } from "../pages/CertificadoListPage"
 import { CertificadoRegistroPage } from "../pages/CertificadoRegistroPage"
 import CertificadoPDF from "../components/certificado/CertificadoPdf"
+import PDFViewer from "../components/certificado/PDFViewer"
 export const UserRoutes = () => {
     const { login } = useAuth();;
     return (
@@ -32,7 +33,7 @@ export const UserRoutes = () => {
                         <Route path="certificados/registrar" element={<CertificadoRegistroPage />} />
                         <Route path="certificados" element={<CertificadoListPage />} />
                         <Route path="certificados/editar/:id" element={<CertificadoRegistroPage />} />
-                        <Route path="certificados/imprimir/:id" element={<CertificadoPDF />} />
+                        <Route path="certificados/imprimir/:id" element={<PDFViewer />} />
                         <Route path="certificados/cliente/:clienteId" element={<CertificadoRegistroPage />} />
                     </>
                     }
