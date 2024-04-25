@@ -4,11 +4,12 @@ import { useAuth } from "../auth/hooks/useAuth";
 import { CertificadosFindAll, CertificadoDelete, CertificadosSave, CertificadoUpdate } from "../services/certificadoService";
 import { addCertificados, certificadoSelected, loadingCertificados, onCertificadoSelectedForm, onCloseForm, onError, onOpenForm, removeCertificados, updateCertificados } from "../store/slices/certificados/certificadoSlice";
 import Swal from "sweetalert2";
+import { useState } from "react";
 const inicialCertificado = []
 export const useCertificados = ()=>{
     const { certificados, errors, clienteSelected, visibleForm } = useSelector(state => state.certificados)
     const dispatch = useDispatch();
-
+    const [abrir,setAbrir]=useState(false);
 
 
 
@@ -64,7 +65,9 @@ console.log(certificado.id);
 
             } else if (error.response?.status == 401) {
                 handlerLogout();
-            } else {
+            } else if (error.response?.status ==403) {
+               Swal.fire('Error', 'Ingrese bien los datos ', 'error')
+            }else{
                 throw error;
             }
         }
@@ -120,7 +123,12 @@ console.log(certificado.id);
         dispatch(onError({}));
     }
 
-
+const cerrar =()=>{
+    setAbrir(false);
+}
+const abrirModal =()=>{
+    setAbrir(true);
+}
 
 
     return {
@@ -137,5 +145,8 @@ console.log(certificado.id);
         handlerRemoveCertificados,
         handlerCertificadoSelectedForm,
         getCertificados,
+        cerrar,
+        abrirModal,
+        abrir
     }
 }

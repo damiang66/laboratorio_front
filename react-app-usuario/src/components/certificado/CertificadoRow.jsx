@@ -1,12 +1,24 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useAuth } from '../../auth/hooks/useAuth';
 import { useCertificados } from '../../hooks/useCertificados';
 import { NavLink } from 'react-router-dom';
 import CertificadoPDF from './CertificadoPdf';
+import { faEye, faPen, faPrint, faTrash } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { CertificadosVer } from './CertificadosVer';
 
 export const CertificadoRow = ({id, certificadoNumero, fecha, ciudad, departamento, empresa, cliente, coprologico, coproCultivo, cultivo, koh, diagnostico, concepto}) => {
-  const { handlerCertificadoSelectedForm, handlerRemoveCertificados } = useCertificados();
+  const { handlerCertificadoSelectedForm, handlerRemoveCertificados,abrir,abrirModal,cerrar } = useCertificados();
   const { login } = useAuth();;
+  const [isModalOpen, setIsModalOpen] = useState(false);
+let certificado ={id, certificadoNumero, fecha, ciudad, departamento, empresa, cliente, coprologico, coproCultivo, cultivo, koh, diagnostico, concepto};
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
   return (
       <tr>
           <td>{id}</td>
@@ -29,28 +41,21 @@ export const CertificadoRow = ({id, certificadoNumero, fecha, ciudad, departamen
                           className="btn btn-secondary btn-sm"
                        
                       >
-                          Editar
+                            <FontAwesomeIcon icon={faPen} />
                       </NavLink>
                   </td>
+                 
                   <td>
-                      <NavLink
-                          type="button"
-                          className="btn btn-success btn-sm"
-                         to={"/certificados/imprimir/"+ id}
-                      >
-                          imprimir
-                      </NavLink>
-                    
+                  <FontAwesomeIcon  onClick={openModal} icon={faEye} />
                   </td>
-                  
                  <td>
-                      <button
+                 <FontAwesomeIcon icon={faTrash} 
                           type="button"
                           className="btn btn-danger btn-sm"
                           onClick={() => handlerRemoveCertificados(id)}
-                      >
-                          eliminar
-                      </button>
+                      />
+                      <CertificadosVer isOpen={isModalOpen} onClose={closeModal} certificado={certificado} />   
+                      
                   </td>
               </>
           }

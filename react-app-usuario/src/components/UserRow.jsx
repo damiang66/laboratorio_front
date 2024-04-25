@@ -4,6 +4,8 @@ import { NavLink } from "react-router-dom"
 
 import { useUsers } from "../hooks/useUsers";
 import { useAuth } from "../auth/hooks/useAuth";
+import { faPen, faTrash } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export const UserRow = ({ id, username, email, admin }) => {
     const { handlerUserSelectedForm, handlerRemoveUser } = useUsers();
@@ -27,13 +29,13 @@ export const UserRow = ({ id, username, email, admin }) => {
                                 admin
                             })}
                         >
-                            editar
+                             <FontAwesomeIcon icon={faPen} />
                         </button>
                     </td>
                     <td>
                         <NavLink className={'btn btn-secondary btn-sm'}
                             to={'/users/edit/' + id} >
-                            editar 
+                          <FontAwesomeIcon icon={faPen} />
                         </NavLink>
                     </td>
                     <td>
@@ -42,7 +44,7 @@ export const UserRow = ({ id, username, email, admin }) => {
                             className="btn btn-danger btn-sm"
                             onClick={() => handlerRemoveUser(id)}
                         >
-                            eliminar
+                            <FontAwesomeIcon icon={faTrash} />
                         </button>
                     </td>
                 </>

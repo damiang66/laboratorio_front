@@ -1,27 +1,45 @@
 import { useContext, useState } from "react";
 import Swal from "sweetalert2";
 
+
 import { useAuth } from "./../hooks/useAuth";
 import imagen from "../../assets/IPSBIO.jpeg";
 import { StyleSheet } from "@react-pdf/renderer";
+
+
+import { faDoorOpen } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 const initialLoginForm = {
   username: "",
   password: "",
 };
 export const LoginPage = () => {
-  const style = StyleSheet.create({
-    modal: {
-      backgroundColor: "#e0e0e0",
-      display: "block",
-    },
-    image: {
-      backgroundColor: "ffffff",
-    },
-  });
+
   const { handlerLogin } = useAuth();
 
   const [loginForm, setLoginForm] = useState(initialLoginForm);
   const { username, password } = loginForm;
+
+const styles = StyleSheet.create({
+    modal:{
+        display: 'block', 
+       
+    },
+    container :{
+        position: 'relative',
+        width: '100%',
+        height: '300px', /* O ajusta la altura según sea necesario */
+      },
+      
+       img: {
+        position: 'absolute',
+        bottom: 0,
+        left: 0.,
+        width: '100%,',
+      }
+})
+  
 
   const onInputChange = ({ target }) => {
     const { name, value } = target;
@@ -114,6 +132,10 @@ export const LoginPage = () => {
               }}
             />
           </div>
+
+     
+    
+    
 
           <button type="submit"
           style={{
