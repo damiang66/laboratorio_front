@@ -1,3 +1,13 @@
+body{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    height: 100vh; /* Establece la altura al 100% del viewport */
+    background: linear-gradient(to bottom, #3498db, #33d138); /* Degradado de azul a verde */
+    padding: 20px
+}
+
 .abrir-modal {
     background-color: rgba(0, 0, 0, 0.7);
     position: fixed;
