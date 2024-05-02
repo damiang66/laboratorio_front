@@ -4,7 +4,7 @@ import { NavLink } from "react-router-dom";
 import { useAuth } from "../../auth/hooks/useAuth";
 import imagen from '../../assets/principal.png'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowLeft, faStamp, faUpRightAndDownLeftFromCenter, faUser, faUserGroup, faVialVirus } from "@fortawesome/free-solid-svg-icons";
+import { faArrowLeft, faChartSimple, faStamp, faUpRightAndDownLeftFromCenter, faUser, faUserGroup, faVialVirus } from "@fortawesome/free-solid-svg-icons";
 import { StyleSheet } from "@react-pdf/renderer";
 
 export const Navbar = () => {
@@ -49,6 +49,15 @@ export const Navbar = () => {
                                 <NavLink className="nav-link" to="/certificados">
                                 <FontAwesomeIcon icon={faStamp} />
                                    Certificados
+                                </NavLink>
+                            </li>
+                            
+                        }
+                         {!login.isAdmin ||
+                            <li className="nav-item">
+                                <NavLink className="nav-link" to="/estadisticas">
+                                <FontAwesomeIcon icon={faChartSimple} />
+                                   Estadisticas
                                 </NavLink>
                             </li>
                             
