@@ -12,6 +12,7 @@ import { CertificadoListPage } from "../pages/CertificadoListPage"
 import { CertificadoRegistroPage } from "../pages/CertificadoRegistroPage"
 import CertificadoPDF from "../components/certificado/CertificadoPdf"
 import PDFViewer from "../components/certificado/PDFViewer"
+import { Estadisticas } from "../components/estadisticas/Estadisticas"
 export const UserRoutes = () => {
     const { login } = useAuth();;
     return (
@@ -35,6 +36,7 @@ export const UserRoutes = () => {
                         <Route path="certificados/editar/:id" element={<CertificadoRegistroPage />} />
                         <Route path="certificados/imprimir/:id" element={<PDFViewer />} />
                         <Route path="certificados/cliente/:clienteId" element={<CertificadoRegistroPage />} />
+                        <Route path="estadisticas" element={<Estadisticas />} />
                     </>
                     }
                     <Route path="/" element={<Navigate to="/PaginaPrincipal" />} />

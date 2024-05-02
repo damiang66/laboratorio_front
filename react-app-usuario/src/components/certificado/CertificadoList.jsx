@@ -1,16 +1,27 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useAuth } from '../../auth/hooks/useAuth';
 import { useCertificados } from '../../hooks/useCertificados';
 import { CertificadoRow } from './CertificadoRow';
 export const CertificadoList = () => {
   const { certificados } = useCertificados();
   const { login } = useAuth();
-  
+  const busqueda = () => {
+    return certificados.filter(item => item?.cliente?.nombre.toLowerCase().includes(filtro.toLowerCase()));
+  };
+const [filtro, setFiltro] = useState('');
+
+return (
+    <>
+    <input
+    className="form-control my-3 w-75"
+    type="text"
+    placeholder="Buscar por nombre"
+    value={filtro}
+    onChange={(e) => setFiltro(e.target.value)} />
  
 
  
-  return (
-    <>
+ 
 
       <table className="table table-hover table-striped">
 
@@ -38,7 +49,7 @@ export const CertificadoList = () => {
           </thead>
           <tbody>
               {
-                 certificados.map(({ id, certificadoNumero, fecha, ciudad, departamento, empresa, cliente, coprologico, coproCultivo, cultivo, koh, diagnostico, concepto}) => (
+                 busqueda()?.map(({ id, certificadoNumero, fecha, ciudad, departamento, empresa, cliente, coprologico, coproCultivo, cultivo, koh, diagnostico, concepto}) => (
                       <CertificadoRow
                           key={id}
                           id={id}
