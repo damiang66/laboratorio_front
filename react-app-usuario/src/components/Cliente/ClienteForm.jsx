@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import { useClientes } from '../../hooks/useClientes';
+import { useNavigate } from 'react-router-dom';
 
 
 export const ClienteForm = ({clienteSelected}) => {
     const { inicialCLiente, handlerAddClientes, errors,handlerCloseForm } = useClientes();
-    
+    const navegate = useNavigate();
     const [clienteForm, setClienteForm] = useState(inicialCLiente);
    // const [checked, setChecked] = useState(userForm.admin);
     const { id, nombre, dni, edad, telefono,cargo,direccion,email } = clienteForm;
@@ -50,6 +51,7 @@ export const ClienteForm = ({clienteSelected}) => {
 
         // guardar el user form en el listado de usuarios
         handlerAddClientes(clienteForm);
+        navegate('/clienteAyuda')
     }
 
     const onCloseForm = () => {
