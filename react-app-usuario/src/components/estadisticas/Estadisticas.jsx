@@ -6,11 +6,17 @@ import { Document, PDFDownloadLink, Page, Text, View } from '@react-pdf/renderer
 import axios from 'axios';
 
 export const Estadisticas = () => {
+ reportes:{
+    certificados:[]
+    desde:''
+    hasta:''
+}
+const [reporte,setReporte]=useState({})
     const [data, setData] = useState([]);
 const [desde,setDesde]=useState('')
 const [hasta,setHasta]=useState('')
 const [pdfData, setPdfData] = useState(null);
-const [cer,setCer]=useState([])
+const [certificados,setCertificados]=useState([])
 const onChangeFecha = (event) => {
     const { name, value } = event.target;
     if (name === 'desde') {
@@ -28,7 +34,7 @@ const fechas = async () => {
         // Obtener certificados
         const certificatesResponse = await CertificadosFindAll();
         const certificates = certificatesResponse.data;
-        setCer(certificates)
+        setCertificados(certificates)
 
         // Filtrar certificados por fecha si ambos campos están seleccionados
         let filteredCertificates = certificates;
@@ -36,7 +42,7 @@ const fechas = async () => {
             filteredCertificates = certificates.filter(certificado =>
                 certificado.fecha >= desde && certificado.fecha <= hasta
             );
-            setCer(filteredCertificates)
+            setCertificados(filteredCertificates)
         }
 
         // Contar el número de certificados por usuario
@@ -69,7 +75,7 @@ const fechas = async () => {
             // Obtener certificados
             const certificatesResponse = await CertificadosFindAll();
             const certificates = certificatesResponse.data;
-            setCer(certificates)
+            setCertificados(certificates)
 
             // Contar el número de certificados por usuario
             const certificadosPorUsuario = users.map(usuario => {
@@ -86,11 +92,18 @@ const fechas = async () => {
         generarPDF()
     }
     const generarPDF = async() => {
-        console.log(cer);
+      
       // Formatear las fechas si es necesario
       try {
+        setReporte({
+            ...reporte,
+            certificados:certificados,
+            desde:desde,
+            hasta:hasta,
+        })
+        console.log(certificados);
         const url = 'http://localhost:8080/reportes/generar-pdf';
-        const response = await axios.post(url, cer, { responseType: 'arraybuffer' });
+        const response = await axios.post(url,{certificados,desde,hasta}, { responseType: 'arraybuffer' });
         const blob = new Blob([response.data], { type: 'application/pdf' });
         const urlPdf = window.URL.createObjectURL(blob);
         window.open(urlPdf); // Abre el PDF en una nueva pestaña
