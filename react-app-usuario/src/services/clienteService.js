@@ -56,3 +56,10 @@ export const ClienteFIndByNombre = async(nombre)=>{
         return error;
     }
 }
+export const CLientePaginar = async(page)=>{
+    try {
+        return await axios.get(`${url}/paginar/${page}`,config())
+    } catch (error) {
+        return error;
+    }
+}

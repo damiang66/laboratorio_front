@@ -51,3 +51,10 @@ export const CertificadoDelete = async ( id)=>{
         throw error;
     }
 }
+export const CertificadoPaginar = async(page)=>{
+    try {
+        return await axios.get(`${url}/paginar/${page}`,config())
+    } catch (error) {
+        return error;
+    }
+}
