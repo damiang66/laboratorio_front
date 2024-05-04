@@ -96,11 +96,13 @@ export const useClientes = () => {
                 try {
                     await ClienteDelete(id);
                     dispatch(removeCliente(id));
+                  
                     Swal.fire(
                         'Cliente Eliminado!',
                         'El Cliente ha sido eliminado con exito!',
                         'success'
                     );
+                    navigate('/clientesAyuda')
                 } catch (error) {
                     if (error.response?.status == 401) {
                         handlerLogout();

@@ -6,7 +6,7 @@ import { CertificadoPaginar } from '../../services/certificadoService';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons';
 export const CertificadoList = () => {
-  const { certificados } = useCertificados();
+  const { certificados,getCertificados } = useCertificados();
   const { login } = useAuth();
   const [certificado,setCertificado]=useState([])
   

@@ -13,6 +13,8 @@ import { CertificadoRegistroPage } from "../pages/CertificadoRegistroPage"
 import CertificadoPDF from "../components/certificado/CertificadoPdf"
 import PDFViewer from "../components/certificado/PDFViewer"
 import { Estadisticas } from "../components/estadisticas/Estadisticas"
+import { Cliente } from "../components/Cliente/Cliente"
+import { Certificado } from "../components/certificado/Certificado"
 export const UserRoutes = () => {
     const { login } = useAuth();;
     return (
@@ -29,6 +31,7 @@ export const UserRoutes = () => {
                         <Route path="users/edit/:id" element={<RegisterPage />} />
                         <Route path="clientes/registrar" element={<ClienteRegistroPage />} />
                         <Route path="clientes" element={<ClienteListPage />} />
+                        <Route path="clientesAyuda" element={<Cliente />} />
                         <Route path="clientes/editar/:id" element={<ClienteRegistroPage />} />
 
                         <Route path="certificados/registrar" element={<CertificadoRegistroPage />} />
@@ -36,6 +39,7 @@ export const UserRoutes = () => {
                         <Route path="certificados/editar/:id" element={<CertificadoRegistroPage />} />
                         <Route path="certificados/imprimir/:id" element={<PDFViewer />} />
                         <Route path="certificados/cliente/:clienteId" element={<CertificadoRegistroPage />} />
+                        <Route path="certificadoAyuda" element={<Certificado />} />
                         <Route path="estadisticas" element={<Estadisticas />} />
                     </>
                     }

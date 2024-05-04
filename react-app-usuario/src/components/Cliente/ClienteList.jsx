@@ -7,14 +7,14 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons';
 
 export const ClienteList = () => {
-    const { clientes } = useClientes();
+    const { clientes,getClientes } = useClientes();
     const { login } = useAuth();
     const [filtro, setFiltro] = useState('');
     const [cliente,setCliente]=useState([])
   
     const [currentPage, setCurrentPage] = useState(0);
     const [totalPages, setTotalPages] = useState(0);
-  
+ 
    
    useEffect(()=>{
     traerPaginacion()

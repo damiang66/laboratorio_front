@@ -44,7 +44,7 @@ export const ClienteUpdate = async(cliente)=>{
 }
 export const ClienteDelete = async(id)=>{
     try {
-        return await axios.delete(`${url}/${cliente.id}`,config());
+        return await axios.delete(`${url}/${id}`,config());
     } catch (error) {
         return error;
     }

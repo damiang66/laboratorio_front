@@ -93,11 +93,13 @@ console.log(certificado.id);
                 try {
                     await CertificadoDelete(id);
                     dispatch(removeCertificados(id));
+                   
                     Swal.fire(
                         'certificado Eliminado!',
                         'El certificado ha sido eliminado con exito!',
                         'success'
                     );
+                    navigate('/certificadoAyuda')
                 } catch (error) {
                     if (error.response?.status == 401) {
                         handlerLogout();
