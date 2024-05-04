@@ -1,17 +1,48 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useClientes } from '../../hooks/useClientes';
 import { useAuth } from '../../auth/hooks/useAuth';
 import { ClienteRow } from './ClienteRow';
+import { CLientePaginar } from '../../services/clienteService';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons';
 
 export const ClienteList = () => {
     const { clientes } = useClientes();
     const { login } = useAuth();
-    
-    const busqueda = () => {
-        return clientes.filter(item => item.nombre.toLowerCase().includes(filtro.toLowerCase()));
-      };
     const [filtro, setFiltro] = useState('');
+    const [cliente,setCliente]=useState([])
+  
+    const [currentPage, setCurrentPage] = useState(0);
+    const [totalPages, setTotalPages] = useState(0);
+  
    
+   useEffect(()=>{
+    traerPaginacion()
+
+   },[currentPage])
+   const traerPaginacion = async()=>{
+ const respuesta = await CLientePaginar(currentPage);
+ setCliente(respuesta.data.content);
+ setTotalPages(respuesta.data.totalPages)
+   }
+   const nextPage = () => {
+    if (currentPage < totalPages - 1) {
+        setCurrentPage(currentPage + 1);
+    }
+};
+
+const prevPage = () => {
+    if (currentPage > 0) {
+        setCurrentPage(currentPage - 1);
+    }
+};
+const busqueda = () => {
+    if(filtro.length===0){
+        return cliente;
+    }
+    return clientes.filter(item => item.nombre.toLowerCase().includes(filtro.toLowerCase()));
+  };
+
     return (
         <>
         <input
@@ -58,8 +89,13 @@ export const ClienteList = () => {
                         />
                     ))
                 }
+                 <FontAwesomeIcon className='btn btn-primary btn-sm' onClick={prevPage} disabled={currentPage === 0} icon={faArrowLeft} />
+            <FontAwesomeIcon className='btn btn-primary btn-sm' onClick={nextPage} disabled={currentPage === totalPages - 1} icon={faArrowRight} />
             </tbody>
+           
+           
         </table>
+      
         </>
     )
 }
