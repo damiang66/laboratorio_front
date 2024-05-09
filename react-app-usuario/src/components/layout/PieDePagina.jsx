@@ -52,9 +52,9 @@ const estilos ={
   const dockContainerStyles = {
     position: 'fixed',
     top: 250,
-    left: 0,
-    width: '15%', // Ajusta el ancho al 100% de la pantalla
-    height: '15%', // Ajusta la altura al 15% de la pantalla
+    left: -40,
+    width: '5%', // Ajusta el ancho al 100% de la pantalla
+    height: '5%', // Ajusta la altura al 15% de la pantalla
     zIndex: 1000, // Ajusta el índice z según sea necesario
     backgroundColor: 'transparent', // Hace que el Dock sea transparente
     paddingLeft: '20px', // Agrega espacio izquierdo para evitar la superposición del contenido
