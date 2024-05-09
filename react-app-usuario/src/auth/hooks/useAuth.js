@@ -30,7 +30,7 @@ const {user,isAdmin,isAuth,isCopado}= useSelector(state=>state.auth)
                 user,
             }));
             sessionStorage.setItem('token', `Bearer ${token}`);
-            navigate('/PaginaPrincipal');
+            navigate('/users');
         } catch (error) {
             if (error.response?.status == 401) {
                 Swal.fire('Error Login', 'Username o password invalidos', 'error');
