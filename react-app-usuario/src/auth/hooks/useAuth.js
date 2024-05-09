@@ -9,7 +9,7 @@ import { onLogin, onLogout } from "../../store/slices/auth/authSlice";
 
 export const useAuth = () => {
 const dispatch=useDispatch();
-const {user,isAdmin,isAuth}= useSelector(state=>state.auth)
+const {user,isAdmin,isAuth,isCopado}= useSelector(state=>state.auth)
     //const [login, dispatch] = useReducer(loginReducer, initialLogin);
     const navigate = useNavigate();
 
@@ -21,11 +21,12 @@ const {user,isAdmin,isAuth}= useSelector(state=>state.auth)
             const claims = JSON.parse(window.atob(token.split(".")[1]));
             console.log(claims);
             const user = { username: claims.sub }
-            dispatch(onLogin({user, isAdmin: claims.isAdmin})
+            dispatch(onLogin({user, isAdmin: claims.isAdmin,isCopado:claims.isCopado})
                );
             sessionStorage.setItem('login', JSON.stringify({
                 isAuth: true,
                 isAdmin: claims.isAdmin,
+                isCopado:claims.isCopado,
                 user,
             }));
             sessionStorage.setItem('token', `Bearer ${token}`);
@@ -49,7 +50,7 @@ const {user,isAdmin,isAuth}= useSelector(state=>state.auth)
         sessionStorage.clear();
     }
     return {
-        login:{user,isAdmin,isAuth},
+        login:{user,isAdmin,isAuth,isCopado},
         handlerLogin,
         handlerLogout,
     }

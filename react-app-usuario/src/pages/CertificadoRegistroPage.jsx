@@ -21,7 +21,8 @@ export const CertificadoRegistroPage = () => {
 
   return (
       <div className="container my-4">
-          <h4>{ certificadoSelected.id > 0 ? 'Editar' : 'Registrar'} certificado</h4>
+         
+          <h4 style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', margin: 25 }}>{ certificadoSelected.id > 0 ? 'Editar' : 'Registrar'} certificado</h4>
           <div className="row">
               <div className="col">
                   <CertificadoForm 

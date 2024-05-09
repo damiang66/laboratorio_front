@@ -5,6 +5,7 @@ import { CertificadoRow } from './CertificadoRow';
 import { CertificadoPaginar } from '../../services/certificadoService';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons';
+import { PaginadorPage } from '../../pages/PaginadorPage';
 export const CertificadoList = () => {
   const { certificados,getCertificados } = useCertificados();
   const { login } = useAuth();
@@ -105,8 +106,14 @@ return (
           </tbody>
         
       </table>
-      <FontAwesomeIcon className='btn btn-primary btn-sm' onClick={prevPage} disabled={currentPage === 0} icon={faArrowLeft} />
-            <FontAwesomeIcon className='btn btn-primary btn-sm' onClick={nextPage} disabled={currentPage === totalPages - 1} icon={faArrowRight} />
+      <PaginadorPage
+      data={busqueda()}
+      total={totalPages}
+      currentPage={currentPage}
+      setCurrentPage={setCurrentPage}
+      />
+
+      
       </>
   )
 }
