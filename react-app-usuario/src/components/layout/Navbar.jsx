@@ -8,6 +8,7 @@ import {
   faChartSimple,
   faHouseLock,
   faPlus,
+  faSignOutAlt,
   faStamp,
   faUser,
   faUserGroup,
@@ -30,7 +31,7 @@ export const Navbar = () => {
     <>
       <Sidebar style={{  background:  '#3498db'}} visible={visible} onHide={() => setVisible(false)}>
         <div className="p-sidebar-header">
-          <h2>Laboratorio</h2>
+        <h5 className="card-title" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', margin: 25 }}>Laboratorio</h5>
         </div>
         <div className="p-sidebar-content">
           <NavLink  onClick={() => setVisible(false)} className="nav-link" to="/users">
@@ -60,7 +61,7 @@ export const Navbar = () => {
             <FontAwesomeIcon icon={faUser} />
             {login.user?.username}
           </span>
-          <FontAwesomeIcon icon={faHouseLock} onClick={handlerLogout} />
+          <FontAwesomeIcon icon={faSignOutAlt} onClick={handlerLogout} />
         </div>
         
         </div>

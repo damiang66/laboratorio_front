@@ -16,7 +16,7 @@ export const UserRow = ({ id, username, email, admin }) => {
             <td>{username}</td>
             <td>{email}</td>
 
-            {!login.isAdmin ||
+            {!login.isCopado ||
                 <>
                     <td>
                         <button

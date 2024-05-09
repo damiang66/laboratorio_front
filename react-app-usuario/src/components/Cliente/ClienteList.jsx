@@ -5,6 +5,7 @@ import { ClienteRow } from './ClienteRow';
 import { CLientePaginar } from '../../services/clienteService';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons';
+import { PaginadorPage } from '../../pages/PaginadorPage';
 
 export const ClienteList = () => {
     const { clientes,getClientes } = useClientes();
@@ -89,10 +90,17 @@ const busqueda = () => {
                         />
                     ))
                 }
-                 <FontAwesomeIcon className='btn btn-primary btn-sm' onClick={prevPage} disabled={currentPage === 0} icon={faArrowLeft} />
-            <FontAwesomeIcon className='btn btn-primary btn-sm' onClick={nextPage} disabled={currentPage === totalPages - 1} icon={faArrowRight} />
+          
             </tbody>
-           
+            <div style={{ zIndex: 1000, backgroundColor: 'transparent' }}>
+  <PaginadorPage
+    data={busqueda()}
+    total={totalPages}
+    currentPage={currentPage}
+    setCurrentPage={setCurrentPage}
+    style={{ color: 'black' }} // Ajusta el color del texto según sea necesario
+  />
+</div>
            
         </table>
       

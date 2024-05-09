@@ -3,9 +3,11 @@ import { useAuth } from '../auth/hooks/useAuth';
 import { useCertificados } from '../hooks/useCertificados';
 import { CertificadoModalForm } from '../components/certificado/CertificadoModalForm';
 import { CertificadoList } from '../components/certificado/CertificadoList';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import { CertificadosVer } from '../components/certificado/CertificadosVer';
+import { Button } from 'primereact/button';
 export const CertificadoListPage = () => {
+    const navegar = useNavigate()
   const {
     certificados,
     visibleForm,
@@ -21,7 +23,9 @@ const { login } = useAuth();;
 useEffect(() => {
     getCertificados();
 }, []);
-
+const registrar = ()=>{
+    navegar('/certificados/registrar')
+}
 return (
     <>
 
@@ -30,8 +34,9 @@ return (
             <h2>Laboratorio app</h2>
             <div className="row">
                 <div className="col">
-               
-<NavLink className="btn btn-primary m-2"  to={"/certificados/registrar"} >Nuevo Certificado</NavLink>
+                <Button onClick={registrar} label="Nuevo Certificado" >
+
+</Button>
                     {
                         certificados?.length === 0
                             ? <div className="alert alert-warning">No hay certificados en el sistema!</div>

@@ -106,13 +106,15 @@ return (
           </tbody>
         
       </table>
-      <PaginadorPage
-      data={busqueda()}
-      total={totalPages}
-      currentPage={currentPage}
-      setCurrentPage={setCurrentPage}
-      />
-
+      <div style={{ zIndex: 1000, backgroundColor: 'transparent' }}>
+  <PaginadorPage
+    data={busqueda()}
+    total={totalPages}
+    currentPage={currentPage}
+    setCurrentPage={setCurrentPage}
+    style={{ color: 'black' }} // Ajusta el color del texto según sea necesario
+  />
+</div>
       
       </>
   )

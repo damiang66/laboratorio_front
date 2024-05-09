@@ -47,6 +47,12 @@ export const CertificadoForm = ({ certificadoSelected }) => {
       usuario: usuarioData?.id
     });
   }
+const estilos ={
+  input:{
+    with:'250px'
+  }
+  
+}
   let clienteLista = [];
   useEffect(() => {
 
@@ -156,12 +162,12 @@ export const CertificadoForm = ({ certificadoSelected }) => {
     <>
       <form onSubmit={onSubmit}>
         <Card role="region">
-          <div className="card" style={{ backgroundColor: '#33FF8A' }}>
+          <div className="card" style={{ backgroundColor: '#66B2FF' }}>
             <div className="card-body">
               <div  >
 
                 <FloatLabel  >
-                  <InputText name="certificadoNumero" id="username" value={certificadoForm.certificadoNumero} onChange={onInputChange} className="p-inputtext-lg" />
+                  <InputText name="certificadoNumero" id="username" value={certificadoForm.certificadoNumero} onChange={onInputChange} className="p-inputtext-lg"  style={{ fontSize: '20px', width: '100%' }}  />
                   <label for="username">Numero de Certificado</label>
                 </FloatLabel>
                 <p className="text-danger">{errors?.certificadoNumero}</p>
@@ -173,7 +179,7 @@ export const CertificadoForm = ({ certificadoSelected }) => {
 
 
         <Card role="region">
-          <div className="card" style={{ backgroundColor: '#33FF8A' }}>
+          <div className="card" style={{ backgroundColor: '#66B2FF' }}>
             {clienteSeleccionado.id && clienteSeleccionado != null && (
               <InputText value={clienteSeleccionado.nombre} type="text" className="p-inputtext-lg" />
             )}
@@ -200,7 +206,7 @@ export const CertificadoForm = ({ certificadoSelected }) => {
                   </FloatLabel>
                   <p className="text-danger">{errors?.departamento}</p>
                 </div>
-                <Calendar value={certificadoForm.fecha} onChange={onInputChange} name="fecha" showIcon />
+                <Calendar style={{height:'75%'}} value={certificadoForm.fecha} onChange={onInputChange} name="fecha" showIcon />
                 <p className="text-danger">{errors?.fecha}</p>
               </div>
 
@@ -245,7 +251,7 @@ export const CertificadoForm = ({ certificadoSelected }) => {
                       options={clientes}
                       optionLabel="nombre"
                       placeholder="Select Clientes"
-                      style={{ maxHeight: '250px' }}
+                      style={{ maxHeight: '250px', borderRadius: '5px', border: '2px solid ' }}
                       listStyle={{ maxHeight: '150px' }} // Limita la altura de la lista desplegable
                       className="w-full md:w-14rem"
                     />
@@ -266,23 +272,23 @@ export const CertificadoForm = ({ certificadoSelected }) => {
 
 
         <Card role="region" >
-          <div className="card" style={{ backgroundColor: '#33FF8A' }}>
+          <div className="card" style={{ backgroundColor: '#66B2FF' }}>
             <div className="card-body">
               <h5 className="card-title" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', margin: 25 }}>Laboratorio</h5>
               <div style={{ display: 'flex', gap: '80px', margin:'20px' }}>
 
 
 
-                <div>
+                <div style={{marginLeft:'35px'}}>
                   <FloatLabel >
-                    <InputText name="coprologico" id="coprologico" value={certificadoForm.coprologico} onChange={onInputChange} />
+                    <InputText name="coprologico" id="coprologico" value={certificadoForm.coprologico} onChange={onInputChange} style={{ fontSize: '20px', width: '100%' }} />
                     <label htmlFor="coprologico">coprologico</label>
                   </FloatLabel>
                   <p className="text-danger">{errors?.coprologico}</p>
                 </div>
                 <div>
                   <FloatLabel>
-                    <InputText name="coprocultivo" id="coprocultivo" value={certificadoForm.coprocultivo} onChange={onInputChange} />
+                    <InputText name="coprocultivo" id="coprocultivo" value={certificadoForm.coprocultivo} onChange={onInputChange} style={{ fontSize: '20px', width: '100%' }} />
                     <label htmlFor="coprocultivo">coprocultivo</label>
                   </FloatLabel>
                   <p className="text-danger">{errors?.coprocultivo}</p>
@@ -294,16 +300,16 @@ export const CertificadoForm = ({ certificadoSelected }) => {
 
 
 
-                <div>
+                <div div style={{marginLeft:'35px'}}>
                   <FloatLabel >
-                    <InputText name="cultivo" id="cultivo" value={certificadoForm.coprologico} onChange={onInputChange} />
+                    <InputText name="cultivo" id="cultivo" value={certificadoForm.coprologico} onChange={onInputChange} style={{ fontSize: '20px', width: '100%' }} />
                     <label htmlFor="cultivo">cultivo nasogarinfeo</label>
                   </FloatLabel>
                   <p className="text-danger">{errors?.coprologico}</p>
                 </div>
                 <div>
                   <FloatLabel>
-                    <InputText name="koh" id="koh" value={certificadoForm.koh} onChange={onInputChange} />
+                    <InputText name="koh" id="koh" value={certificadoForm.koh} onChange={onInputChange} style={{ fontSize: '20px', width: '100%' }} />
                     <label htmlFor="koh">koh de uñas</label>
                   </FloatLabel>
                   <p className="text-danger">{errors?.koh}</p>
@@ -318,22 +324,22 @@ export const CertificadoForm = ({ certificadoSelected }) => {
           </div>
         </Card >
         <Card>
-          <div className="card" style={{ backgroundColor: '#33FF8A' }}>
+          <div className="card" style={{ backgroundColor: '#66B2FF' }}>
             <div className="card-body">
             <h5 className="card-title" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', margin: 25 }}>Diagnostico</h5>
             
-              <FloatLabel>
-                    <InputText name="diagnostico" id="diagnostico" value={certificadoForm.diagnostico} onChange={onInputChange} />
+              <FloatLabel >
+                    <InputText name="diagnostico" id="diagnostico" value={certificadoForm.diagnostico} onChange={onInputChange} style={{  fontSize: '20px', width: '100%' }} />
                     <label htmlFor="diagnostico">diagnostico</label>
                   </FloatLabel>
               <p className="text-danger">{errors?.diagnostico}</p>
             </div>
           </div>
         </Card>
-        <div className="card" style={{ backgroundColor: '#33FF8A' }}>
-          <div className="card-body">
+        <div className="card" style={{ backgroundColor: '#66B2FF' }}>
+          <div className="card-body" style={{marginLeft:'50px'}}>
           <h5 className="card-title" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', margin: 25 }}>concepto</h5>
-            <select
+            <select style={{marginLeft:'50px'}}
               name="concepto"
               value={certificadoForm.concepto}
               onChange={onInputChange}
@@ -350,12 +356,7 @@ export const CertificadoForm = ({ certificadoSelected }) => {
               <option value="Aplazado">Aplazado</option>
             </select>
           </div>
-        </div>
-
-        <input type="hidden" name="id" value={certificadoForm.id} />
-        <input type="hidden" name="usuario" value={certificadoForm.usuario} />
-
-        <ButtonGroup style={{ display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
+          <ButtonGroup style={{ display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
           <Button icon="pi pi-check" type="submit" >
             {certificadoForm.id > 0 ? 'Editar' : 'Crear'}
           </Button>
@@ -368,6 +369,12 @@ export const CertificadoForm = ({ certificadoSelected }) => {
 
           </NavLink>
         </ButtonGroup>
+        </div>
+
+        <input type="hidden" name="id" value={certificadoForm.id} />
+        <input type="hidden" name="usuario" value={certificadoForm.usuario} />
+
+       
 
 
 
