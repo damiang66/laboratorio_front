@@ -90,9 +90,12 @@ const busqueda = () => {
                         />
                     ))
                 }
-          
+        
             </tbody>
-            <div style={{ zIndex: 1000, backgroundColor: 'transparent' }}>
+           
+           
+        </table>
+        <div style={{height:'100%'}}>
   <PaginadorPage
     data={busqueda()}
     total={totalPages}
@@ -101,9 +104,6 @@ const busqueda = () => {
     style={{ color: 'black' }} // Ajusta el color del texto según sea necesario
   />
 </div>
-           
-        </table>
-      
         </>
     )
 }
