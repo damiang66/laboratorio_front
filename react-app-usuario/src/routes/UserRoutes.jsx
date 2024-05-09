@@ -15,36 +15,50 @@ import PDFViewer from "../components/certificado/PDFViewer"
 import { Estadisticas } from "../components/estadisticas/Estadisticas"
 import { Cliente } from "../components/Cliente/Cliente"
 import { Certificado } from "../components/certificado/Certificado"
+import { PieDePagina } from "../components/layout/PieDePagina"
+import { PanelDeUsuario } from "../components/PanelDeUsuario"
 export const UserRoutes = () => {
     const { login } = useAuth();;
     return (
         <>
             {/* <UserProvider> */}
-                <Navbar />
-                <Routes>
-                    
+      <div style={{
+                   marginBottom: '100px', 
+             
+            }}>
 
+            <PieDePagina  />
+            </div>
+                <Routes>
+                <Route path="users" element={<UsersPage />} />
+                <Route path="panel/:idUsuario" element={<PanelDeUsuario />} />
                     {!login.isAdmin || <>
                         <Route path="paginaPrincipal" element={<PrincipalPage/>}/>
-                        <Route path="users/register" element={<RegisterPage />} />
-                        <Route path="users" element={<UsersPage />} />
+                     
+                       
                         <Route path="users/edit/:id" element={<RegisterPage />} />
                         <Route path="clientes/registrar" element={<ClienteRegistroPage />} />
                         <Route path="clientes" element={<ClienteListPage />} />
                         <Route path="clientesAyuda" element={<Cliente />} />
                         <Route path="clientes/editar/:id" element={<ClienteRegistroPage />} />
-
+                       
                         <Route path="certificados/registrar" element={<CertificadoRegistroPage />} />
                         <Route path="certificados" element={<CertificadoListPage />} />
                         <Route path="certificados/editar/:id" element={<CertificadoRegistroPage />} />
                         <Route path="certificados/imprimir/:id" element={<PDFViewer />} />
                         <Route path="certificados/cliente/:clienteId" element={<CertificadoRegistroPage />} />
                         <Route path="certificadoAyuda" element={<Certificado />} />
-                        <Route path="estadisticas" element={<Estadisticas />} />
+                       
+                       
                     </>
                     }
+                       {!login.isCopado || <>
+                        <Route path="users/register" element={<RegisterPage />} />
+                        <Route path="estadisticas" element={<Estadisticas />} />
+                       </>}
                     <Route path="/" element={<Navigate to="/PaginaPrincipal" />} />
                 </Routes>
+              
             {/* </UserProvider> */}
         </>
     )

@@ -4,6 +4,7 @@ import { UsersList } from "../components/UsersList";
 
 import { useUsers } from "../hooks/useUsers";
 import { useAuth } from "../auth/hooks/useAuth";
+import { Button } from "primereact/button";
 
 export const UsersPage = () => {
 
@@ -29,11 +30,9 @@ export const UsersPage = () => {
                 <h2>Laboratorio App</h2>
                 <div className="row">
                     <div className="col">
-                        {(visibleForm || !login.isAdmin) || <button
-                            className="btn btn-primary my-2"
-                            onClick={handlerOpenForm}>
-                            Nuevo Usuario
-                        </button>}
+                        {(visibleForm || !login.isCopado) || 
+                        <Button  onClick={handlerOpenForm} label="Nuevo usuario" />
+                       }
 
                         {
                             users.length === 0

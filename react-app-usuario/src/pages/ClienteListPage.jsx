@@ -3,6 +3,7 @@ import { useClientes } from '../hooks/useClientes';
 import { useAuth } from '../auth/hooks/useAuth';
 import { ClienteModalForm } from '../components/Cliente/ClienteModalForm';
 import { ClienteList } from '../components/Cliente/ClienteList';
+import { Button } from 'primereact/button';
 
 export const ClienteListPage = () => {
   const {
@@ -27,11 +28,9 @@ return (
             <h2>Laboratorio app</h2>
             <div className="row">
                 <div className="col">
-                    {(visibleForm || !login.isAdmin) || <button
-                        className="btn btn-primary my-2"
-                        onClick={handlerOpenForm}>
-                        Nuevo Cliente
-                    </button>}
+                    {(visibleForm || !login.isAdmin) || 
+                     <Button  onClick={handlerOpenForm} label="Nuevo Cliente" />
+                   }
 
                     {
                         clientes.length === 0

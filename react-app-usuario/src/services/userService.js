@@ -65,3 +65,20 @@ export const UsuarioFindByNombre = async(nombre)=>{
         throw error;
     }
 }
+export const  UsuarioFindByid = async(id)=>{
+    try {
+        return await axios.get(`${url}/${id}`, config());
+    } catch (error) {
+        throw error;
+    }
+}
+export const Usuarioupdate = async({id,username,password,email}) => {
+   //console.log('DESDE EL SERVICE ' + JSON.stringify(usuario));
+    try {
+        return await axios.put(`${url}/editar/${id}`, {
+            id,username,password,email
+        }, config());
+    } catch (error) {
+        throw error;
+    }
+}
