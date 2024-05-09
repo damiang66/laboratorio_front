@@ -9,12 +9,12 @@ export const UserForm = ({ userSelected, handlerCloseForm }) => {
     
     const [userForm, setUserForm] = useState(initialUserForm);
     const [checked, setChecked] = useState(userForm.admin);
-    const { id, username, password, email, admin } = userForm;
+    const { id, username, password, email, admin,copado } = userForm;
 
     useEffect(() => {
         setUserForm({
             ...userSelected,
-            password: '',
+            password: '12',
         });
     }, [userSelected]);
 
@@ -35,6 +35,15 @@ export const UserForm = ({ userSelected, handlerCloseForm }) => {
         }
         );
     }
+    const onCheckboxChange1 = () => {
+        setChecked(!checked);
+        setUserForm({
+            ...userForm,
+            copado: checked,
+        }
+        );
+    }
+
 
     const onSubmit = (event) => {
         event.preventDefault();
@@ -76,13 +85,13 @@ export const UserForm = ({ userSelected, handlerCloseForm }) => {
                 onChange={onInputChange} />
             <p className="text-danger">{ errors?.username}</p>
             
-            { id > 0 || <input
+      <input
                 className="form-control my-3 w-75"
                 placeholder="Password"
                 type="password"
                 name="password"
                 value={password}
-                onChange={onInputChange} />}
+                onChange={onInputChange} />
             <p className="text-danger">{errors?.password}</p>
             
             <input
@@ -101,6 +110,15 @@ export const UserForm = ({ userSelected, handlerCloseForm }) => {
                     onChange={onCheckboxChange}
                 />
                 <label className="form-check-label">Admin</label>
+            </div>
+            <div className="my-3 form-check">
+                <input type="checkbox"
+                    name="admin"
+                    checked={copado}
+                    className="form-check-input"
+                    onChange={onCheckboxChange1}
+                />
+                <label className="form-check-label">Control Total</label>
             </div>
 
             <input type="hidden"

@@ -5,6 +5,7 @@ export const initialUserForm = {
     password: '',
     email: '',
     admin: false,
+    copado:false,
 }
 const initialErrors = {
     username: '',

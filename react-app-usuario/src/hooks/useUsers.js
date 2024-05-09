@@ -41,7 +41,7 @@ export const useUsers = () => {
 }
 
     const handlerAddUser = async (user) => {
-        // console.log(user);
+         console.log("DESDE EL USE : " + JSON.stringify(user));
 
         if (!login.isAdmin) return;
 

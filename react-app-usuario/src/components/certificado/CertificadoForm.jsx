@@ -10,6 +10,16 @@ import { formToJSON } from "axios";
 import { useSelector } from "react-redux";
 import { UsuarioFindByNombre } from "../../services/userService";
 import { ClienteFindById } from "../../services/clienteService";
+import { Calendar } from 'primereact/calendar';
+import 'primereact/resources/themes/saga-blue/theme.css';
+import 'primereact/resources/primereact.min.css';
+import 'primeicons/primeicons.css';
+import { ListBox } from "primereact/listbox";
+import { Button } from "primereact/button";
+import { ButtonGroup } from 'primereact/buttongroup'
+import { InputText } from "primereact/inputtext";
+import { FloatLabel } from "primereact/floatlabel";
+import { Card } from "primereact/card";
 
 export const CertificadoForm = ({ certificadoSelected }) => {
   const { user } = useSelector(state => state.auth);
@@ -24,12 +34,24 @@ export const CertificadoForm = ({ certificadoSelected }) => {
     ...inicialCertificado,
   });
   const [usuarioData, setUsuarioData] = useState({});
-  const [cliente,setCliente]=useState({})
-let clienteLista=[];
+  const [cliente, setCliente] = useState({})
+  const handleClienteChange = (event) => {
+
+    const clienteId = event.value;
+    console.log(clienteId.id);
+    const clienteSeleccionado = clientes.find(cliente => cliente.id == clienteId.id);
+    setClienteSeleccionado(clienteSeleccionado);
+    setCertificadoForm({
+      ...certificadoForm,
+      idCliente: clienteId.id,
+      usuario: usuarioData?.id
+    });
+  }
+  let clienteLista = [];
   useEffect(() => {
 
-   getClientes()
-   clienteLista = clientes
+    getClientes()
+    clienteLista = clientes
     getUsers();
     usuario = user?.username;
     traerUsuario(usuario);
@@ -43,14 +65,14 @@ let clienteLista=[];
       });
     }
   }, []);
-const clientePorId =(id)=>{
-clienteLista.forEach(c=>{
-  if(c.id== clienteId){
-    setCliente(c);
+  const clientePorId = (id) => {
+    clienteLista.forEach(c => {
+      if (c.id == clienteId) {
+        setCliente(c);
+      }
+    })
+    console.log(cliente);
   }
-})
- console.log(cliente);
-}
   const traerUsuario = async (usuario) => {
     try {
       const respuesta = await UsuarioFindByNombre(usuario);
@@ -73,8 +95,8 @@ clienteLista.forEach(c=>{
       usuario: usuarioData?.id
     }));
   }, [clienteSeleccionadoId, clientes]);
-
-  const handleClienteChange = (event) => {
+  // este anda sacar el 1
+  const handleClienteChange1 = (event) => {
     const selectedClientId = event.target.value;
     const selectedClient = clientes.find(c => c.id === selectedClientId);
     setClienteSeleccionado(selectedClient || {});
@@ -94,7 +116,7 @@ clienteLista.forEach(c=>{
     if (clienteId) {
       setCertificadoForm({
         ...certificadoForm,
-        [name]:value,
+        [name]: value,
         idCliente: clienteId,
         usuario: usuarioData?.id
       });
@@ -102,7 +124,7 @@ clienteLista.forEach(c=>{
   };
 
   const onSubmit = (event) => {
- //   console.log(cliente);
+    //   console.log(cliente);
     event.preventDefault();
     console.log(certificadoForm);
     handlerAddCertificados(certificadoForm)
@@ -133,148 +155,184 @@ clienteLista.forEach(c=>{
   return (
     <>
       <form onSubmit={onSubmit}>
-        <label htmlFor="certificadoNumero" className="form-label">Numero Certificado</label>
-        <input
-          className="form-control my-3 w-75"
-          placeholder="Numero Certificado"
-          name="certificadoNumero"
-          id="certificadoNumero"
-          value={certificadoForm.certificadoNumero}
-          onChange={onInputChange} />
-        <p className="text-danger">{errors?.certificadoNumero}</p>
-        <div className="card">
-          <div className="card-body">
-            <h5 className="card-title">Informacion personal</h5>
-            <label htmlFor="fecha" className="form-label">Fecha</label>
-            <input
-              type="date"
-              className="form-control my-3 w-75"
-              placeholder="fecha"
-              name="fecha"
-              id="fecha"
-              value={certificadoForm.fecha}
-              onChange={onInputChange} />
-            <p className="text-danger">{errors?.fecha}</p>
-            <label htmlFor="ciudad" className="form-label">Ciudad</label>
-            <input
-              type="text"
-              className="form-control my-3 w-75"
-              placeholder="ciudad"
-              name="ciudad"
-              id="ciudad"
-              value={certificadoForm.ciudad}
-              onChange={onInputChange} />
-            <p className="text-danger">{errors?.ciudad}</p>
+        <Card role="region">
+          <div className="card" style={{ backgroundColor: '#33FF8A' }}>
+            <div className="card-body">
+              <div  >
 
-            <label htmlFor="departamento" className="form-label">Departamento</label>
-            <input
-              className="form-control my-3 w-75"
-              placeholder="departamento"
-              name="departamento"
-              id="departamento"
-              value={certificadoForm.departamento}
-              onChange={onInputChange} />
-            <p className="text-danger">{errors?.departamento}</p>
+                <FloatLabel  >
+                  <InputText name="certificadoNumero" id="username" value={certificadoForm.certificadoNumero} onChange={onInputChange} className="p-inputtext-lg" />
+                  <label for="username">Numero de Certificado</label>
+                </FloatLabel>
+                <p className="text-danger">{errors?.certificadoNumero}</p>
+              </div>
+            </div>
 
-            <label htmlFor="empresa" className="form-label">Empresa</label>
-            <input
-              className="form-control my-3 w-75"
-              placeholder="empresa"
-              name="empresa"
-              id="empresa"
-              value={certificadoForm.empresa}
-              onChange={onInputChange} />
-            <p className="text-danger">{errors?.empresa}</p>
+          </div>
+        </Card>
 
-            {clienteId ? (
-              <input
-                className="form-control my-3 w-75"
-                disabled
-                name="idCliente"
-                value={cliente?.nombre}
-              />
-            ) : (
-              <select
-                id="cliente"
-                className="form-control my-3 w-75"
-                name="idCliente"
-                value={clienteSeleccionado.id}
-                onChange={handleClienteChange}
-              >
-                <option value="">Seleccione un Cliente</option>
-                {clientes.map((c) => (
-                  <option key={c.id} value={c.id}>
-                    {c.nombre}
-                  </option>
-                ))}
-              </select>
+
+        <Card role="region">
+          <div className="card" style={{ backgroundColor: '#33FF8A' }}>
+            {clienteSeleccionado.id && clienteSeleccionado != null && (
+              <InputText value={clienteSeleccionado.nombre} type="text" className="p-inputtext-lg" />
             )}
+
+            <div className="card-body">
+              <h5 className="card-title" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', margin: 25 }}>Informacion personal</h5>
+
+
+              <div style={{ display: 'flex', gap: '20px' }}>
+
+
+
+                <div>
+                  <FloatLabel>
+                    <InputText name="ciudad" id="ciudad" value={certificadoForm.ciudad} onChange={onInputChange} />
+                    <label htmlFor="ciudad">Ciudad</label>
+                  </FloatLabel>
+                  <p className="text-danger">{errors?.ciudad}</p>
+                </div>
+                <div>
+                  <FloatLabel>
+                    <InputText name="departamento" id="departamento" value={certificadoForm.departamento} onChange={onInputChange} />
+                    <label htmlFor="departamento">Departamento</label>
+                  </FloatLabel>
+                  <p className="text-danger">{errors?.departamento}</p>
+                </div>
+                <Calendar value={certificadoForm.fecha} onChange={onInputChange} name="fecha" showIcon />
+                <p className="text-danger">{errors?.fecha}</p>
+              </div>
+
+              <div style={{ display: 'flex', gap: '20px' }}>
+
+                <div>
+                  <FloatLabel>
+                    <InputText name="empresa" id="empresa" value={certificadoForm.empresa} onChange={onInputChange} />
+                    <label htmlFor="empresa">Empresa</label>
+                  </FloatLabel>
+                  <p className="text-danger">{errors?.ciudad}</p>
+                </div>
+                {clienteId ? (
+                  <input
+                    className="form-control my-3 w-75"
+                    disabled
+                    name="idCliente"
+                    value={cliente?.nombre}
+                  />
+                ) : (/*
+<select
+  id="cliente"
+  className="form-control my-3 w-75"
+  name="idCliente"
+  value={clienteSeleccionado.id}
+  onChange={handleClienteChange}
+>
+  <option value="">Seleccione un Cliente</option>
+  {clientes.map((c) => (
+    <option key={c.id} value={c.id}>
+      {c.nombre}
+    </option>
+  ))}
+</select>
+*/
+                  <>
+                    <ListBox
+                      filter
+                      name="idCliente"
+                      value={clienteSeleccionado ? clienteSeleccionado.id : null}
+                      onChange={handleClienteChange}
+                      options={clientes}
+                      optionLabel="nombre"
+                      placeholder="Select Clientes"
+                      style={{ maxHeight: '250px' }}
+                      listStyle={{ maxHeight: '150px' }} // Limita la altura de la lista desplegable
+                      className="w-full md:w-14rem"
+                    />
+                  </>
+                )}
+
+              </div>
+
+            </div>
+
           </div>
-        </div>
 
-        <div className="card">
-          <div className="card-body">
-            <h5 className="card-title">Laboratorios</h5>
-            <label htmlFor="coprologico" className="form-label">coprologico</label>
-            <input
-              className="form-control my-3 w-75"
-              placeholder="coprologico"
-              name="coprologico"
-              id="coprologico"
-              value={certificadoForm.coprologico}
-              onChange={onInputChange} />
-            <p className="text-danger">{errors?.coprologico}</p>
+        </Card>
 
-            <label htmlFor="coproCultivo" className="form-label">coprocultivo</label>
-            <input
-              className="form-control my-3 w-75"
-              placeholder="coproCultivo"
-              name="coproCultivo"
-              id="coproCultivo"
-              value={certificadoForm.coproCultivo}
-              onChange={onInputChange} />
-            <p className="text-danger">{errors?.coproCultivo}</p>
 
-            <label htmlFor="cultivo" className="form-label">cultivo nasogarinfeo</label>
-            <input
-              className="form-control my-3 w-75"
-              placeholder="cultivo"
-              name="cultivo"
-              id="cultivo"
-              value={certificadoForm.cultivo}
-              onChange={onInputChange} />
-            <p className="text-danger">{errors?.cultivo}</p>
 
-            <label htmlFor="koh" className="form-label">koh de uñas</label>
-            <input
-              className="form-control my-3 w-75"
-              placeholder="koh"
-              name="koh"
-              id="koh"
-              value={certificadoForm.koh}
-              onChange={onInputChange} />
-            <p className="text-danger">{errors?.koh}</p>
+
+
+
+        <Card role="region" >
+          <div className="card" style={{ backgroundColor: '#33FF8A' }}>
+            <div className="card-body">
+              <h5 className="card-title" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', margin: 25 }}>Laboratorio</h5>
+              <div style={{ display: 'flex', gap: '80px', margin:'20px' }}>
+
+
+
+                <div>
+                  <FloatLabel >
+                    <InputText name="coprologico" id="coprologico" value={certificadoForm.coprologico} onChange={onInputChange} />
+                    <label htmlFor="coprologico">coprologico</label>
+                  </FloatLabel>
+                  <p className="text-danger">{errors?.coprologico}</p>
+                </div>
+                <div>
+                  <FloatLabel>
+                    <InputText name="coprocultivo" id="coprocultivo" value={certificadoForm.coprocultivo} onChange={onInputChange} />
+                    <label htmlFor="coprocultivo">coprocultivo</label>
+                  </FloatLabel>
+                  <p className="text-danger">{errors?.coprocultivo}</p>
+                </div>
+              
+              </div>
+
+              <div style={{ display: 'flex', gap: '80px', margin:'20px' }}>
+
+
+
+                <div>
+                  <FloatLabel >
+                    <InputText name="cultivo" id="cultivo" value={certificadoForm.coprologico} onChange={onInputChange} />
+                    <label htmlFor="cultivo">cultivo nasogarinfeo</label>
+                  </FloatLabel>
+                  <p className="text-danger">{errors?.coprologico}</p>
+                </div>
+                <div>
+                  <FloatLabel>
+                    <InputText name="koh" id="koh" value={certificadoForm.koh} onChange={onInputChange} />
+                    <label htmlFor="koh">koh de uñas</label>
+                  </FloatLabel>
+                  <p className="text-danger">{errors?.koh}</p>
+                </div>
+              
+              </div>
+
+             
+
+           
+            </div>
           </div>
-        </div>
-
-        <div className="card">
-          <div className="card-body">
-            <h5 className="card-title">Diagnóstico</h5>
-            <label htmlFor="diagnostico" className="form-label">diagnostico</label>
-            <input
-              className="form-control my-3 w-75"
-              placeholder="diagnostico"
-              name="diagnostico"
-              id="diagnostico"
-              value={certificadoForm.diagnostico}
-              onChange={onInputChange} />
-            <p className="text-danger">{errors?.diagnostico}</p>
+        </Card >
+        <Card>
+          <div className="card" style={{ backgroundColor: '#33FF8A' }}>
+            <div className="card-body">
+            <h5 className="card-title" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', margin: 25 }}>Diagnostico</h5>
+            
+              <FloatLabel>
+                    <InputText name="diagnostico" id="diagnostico" value={certificadoForm.diagnostico} onChange={onInputChange} />
+                    <label htmlFor="diagnostico">diagnostico</label>
+                  </FloatLabel>
+              <p className="text-danger">{errors?.diagnostico}</p>
+            </div>
           </div>
-        </div>
-
-        <div className="card">
+        </Card>
+        <div className="card" style={{ backgroundColor: '#33FF8A' }}>
           <div className="card-body">
-            <h5 className="card-title">Concepto</h5>
+          <h5 className="card-title" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', margin: 25 }}>concepto</h5>
             <select
               name="concepto"
               value={certificadoForm.concepto}
@@ -297,20 +355,25 @@ clienteLista.forEach(c=>{
         <input type="hidden" name="id" value={certificadoForm.id} />
         <input type="hidden" name="usuario" value={certificadoForm.usuario} />
 
-        <button className="btn btn-primary" type="submit">
-          {certificadoForm.id > 0 ? 'Editar' : 'Crear'}
-        </button>
+        <ButtonGroup style={{ display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
+          <Button icon="pi pi-check" type="submit" >
+            {certificadoForm.id > 0 ? 'Editar' : 'Crear'}
+          </Button>
+          <NavLink
 
-        <NavLink
-          className="btn btn-success mx-2"
-          type="button"
-          to={'/certificados'}
-        >
-          volver
-        </NavLink>
+            type="button"
+            to={'/certificados'}
+          >
+            <Button label="volver" severity="danger" icon="pi pi-times" />
 
-      
-      </form>
+          </NavLink>
+        </ButtonGroup>
+
+
+
+
+
+      </form >
     </>
   );
 };
