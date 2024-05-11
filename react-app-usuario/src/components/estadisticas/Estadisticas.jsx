@@ -4,6 +4,7 @@ import { findAll } from '../../services/userService';
 import { CertificadosFindAll } from '../../services/certificadoService';
 import { Document, PDFDownloadLink, Page, Text, View } from '@react-pdf/renderer';
 import axios from 'axios';
+import { Calendar } from 'primereact/calendar';
 
 export const Estadisticas = () => {
  reportes:{
@@ -61,7 +62,8 @@ const fechas = async () => {
         fetchData();
     }, []);
     const buscarPorFecha = ()=>{
-      fechas()
+   const respuesta =   fechas()
+      console.log(respuesta);
     }
     const todos = ()=>{
         fetchData()
@@ -84,6 +86,7 @@ const fechas = async () => {
             });
 
             setData(certificadosPorUsuario);
+            console.log(data);
         } catch (error) {
             console.error('Error fetching data:', error);
         }
@@ -117,13 +120,13 @@ const fechas = async () => {
             <h2>Certificados realizados por Empleado</h2>
             <div>
             <div className="mb-3">
-  <label htmlFor="exampleFormControlInput1" className="form-label">Desde</label>
-  <input type="date" onChange={onChangeFecha}
-  value={desde} className="form-control" id="exampleFormControlInput1" name='desde'/>
+  <label htmlFor="exampleFormControlInput1" className="form-label"  style={{marginRight:'12px'}}>Desde</label>
+  
+  <Calendar value={desde} onChange={onChangeFecha} name='desde' showIcon />
 </div>
 <div className="mb-3">
-  <label htmlFor="exampleFormControlTextarea1" className="form-label">Hasta</label>
-  <input type="date" onChange={onChangeFecha} value={hasta} className="form-control" id="exampleFormControlInput1" name='hasta'/>
+  <label htmlFor="exampleFormControlTextarea1" className="form-label" style={{marginRight:'15px'}}>Hasta</label>
+  <Calendar value={hasta} onChange={onChangeFecha} name='hasta' showIcon />
 </div>
 <div className="mb-3">
  <button className='btn btn-success m-2' onClick={buscarPorFecha}>Buscar por Fecha</button>
