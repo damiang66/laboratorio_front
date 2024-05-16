@@ -265,10 +265,10 @@ const estilos ={
                 </div>
                 <div>
                   <FloatLabel>
-                    <InputText name="coprocultivo" id="coprocultivo" value={certificadoForm.coprocultivo} onChange={onInputChange} style={{ fontSize: '20px', width: '100%' }} />
+                    <InputText name="coproCultivo" id="coprocultivo" value={certificadoForm.coproCultivo} onChange={onInputChange} style={{ fontSize: '20px', width: '100%' }} />
                     <label htmlFor="coprocultivo">coprocultivo</label>
                   </FloatLabel>
-                  <p className="text-danger">{errors?.coprocultivo}</p>
+                  <p className="text-danger">{errors?.coproCultivo}</p>
                 </div>
               
               </div>
@@ -279,10 +279,10 @@ const estilos ={
 
                 <div div style={{marginLeft:'35px'}}>
                   <FloatLabel >
-                    <InputText name="cultivo" id="cultivo" value={certificadoForm.coprologico} onChange={onInputChange} style={{ fontSize: '20px', width: '100%' }} />
+                    <InputText name="cultivo" id="cultivo" value={certificadoForm.cultivo} onChange={onInputChange} style={{ fontSize: '20px', width: '100%' }} />
                     <label htmlFor="cultivo">cultivo nasogarinfeo</label>
                   </FloatLabel>
-                  <p className="text-danger">{errors?.coprologico}</p>
+                  <p className="text-danger">{errors?.cultivo}</p>
                 </div>
                 <div>
                   <FloatLabel>
