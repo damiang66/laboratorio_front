@@ -48,9 +48,10 @@ const estilos ={
   width: '15%', // Ajusta el ancho al 15% de la pantalla
   height: '10%', // Ajusta la altura al 100% de la pantalla
   zIndex: 100, // Ajusta
+  fontSize:'1.5em',
 }
   const dockContainerStyles = {
-    position: 'fixed',
+    
     top: 250,
     left: -40,
     width: '5%', // Ajusta el ancho al 100% de la pantalla
@@ -64,14 +65,13 @@ const estilos ={
   return (
     <>
     <div style={estilos}>
-    <span className="nav-link text-primary mx-3">
+    <span className="nav-link m-3">
       <FontAwesomeIcon icon={faUser} />
       {' ' + login.user?.username}
     </span>
    
   </div>
     <div style={dockContainerStyles}>
-      
       <Dock model={getDockItems()} position="left" />
     </div>
     </>

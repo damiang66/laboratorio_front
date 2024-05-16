@@ -30,11 +30,14 @@ return (
     <>
 
      
-        <div className="container my-4">
-            <h2>Laboratorio app</h2>
+        <div className="p-4 bg-light bg-opacity-50"
+            style={{width:"80vw",
+                borderRadius:"0.5em"
+            }}>
+            <h2>Certificados</h2>
             <div className="row">
                 <div className="col">
-                <Button onClick={registrar} label="Nuevo Certificado" >
+                <Button onClick={registrar} label="Nuevo Certificado" className='btn btn-primary m-1' >
 
 </Button>
                     {

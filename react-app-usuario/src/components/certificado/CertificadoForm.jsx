@@ -161,8 +161,9 @@ const estilos ={
   return (
     <>
       <form onSubmit={onSubmit}>
-        <Card role="region">
-          <div className="card" style={{ backgroundColor: '#66B2FF' }}>
+        
+        <Card role="region" className="m-2">
+          <div className="card" style={{ backgroundColor: '#66B2FD' }}>
             <div className="card-body">
               <div  >
 
@@ -177,8 +178,7 @@ const estilos ={
           </div>
         </Card>
 
-
-        <Card role="region">
+        <Card role="region" className="m-2">
           <div className="card" style={{ backgroundColor: '#66B2FF' }}>
             {clienteSeleccionado.id && clienteSeleccionado != null && (
               <InputText value={clienteSeleccionado.nombre} type="text" className="p-inputtext-lg" />
@@ -226,22 +226,7 @@ const estilos ={
                     name="idCliente"
                     value={cliente?.nombre}
                   />
-                ) : (/*
-<select
-  id="cliente"
-  className="form-control my-3 w-75"
-  name="idCliente"
-  value={clienteSeleccionado.id}
-  onChange={handleClienteChange}
->
-  <option value="">Seleccione un Cliente</option>
-  {clientes.map((c) => (
-    <option key={c.id} value={c.id}>
-      {c.nombre}
-    </option>
-  ))}
-</select>
-*/
+                ) : (
                   <>
                     <ListBox
                       filter
@@ -266,19 +251,11 @@ const estilos ={
 
         </Card>
 
-
-
-
-
-
-        <Card role="region" >
+        <Card role="region" className="m-2" >
           <div className="card" style={{ backgroundColor: '#66B2FF' }}>
             <div className="card-body">
               <h5 className="card-title" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', margin: 25 }}>Laboratorio</h5>
               <div style={{ display: 'flex', gap: '80px', margin:'20px' }}>
-
-
-
                 <div style={{marginLeft:'35px'}}>
                   <FloatLabel >
                     <InputText name="coprologico" id="coprologico" value={certificadoForm.coprologico} onChange={onInputChange} style={{ fontSize: '20px', width: '100%' }} />
@@ -323,7 +300,8 @@ const estilos ={
             </div>
           </div>
         </Card >
-        <Card>
+
+        <Card role="region" className="m-2">
           <div className="card" style={{ backgroundColor: '#66B2FF' }}>
             <div className="card-body">
             <h5 className="card-title" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', margin: 25 }}>Diagnostico</h5>
@@ -336,7 +314,8 @@ const estilos ={
             </div>
           </div>
         </Card>
-        <div className="card" style={{ backgroundColor: '#66B2FF' }}>
+
+        <div className="card m-2" style={{ backgroundColor: '#66B2FF' }}>
           <div className="card-body" style={{marginLeft:'50px'}}>
           <h5 className="card-title" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', margin: 25 }}>concepto</h5>
             <select style={{marginLeft:'50px'}}
@@ -357,7 +336,7 @@ const estilos ={
             </select>
           </div>
           <ButtonGroup style={{ display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
-          <Button icon="pi pi-check" type="submit" >
+          <Button icon="pi pi-check" type="submit" className="btn btn-primary m-1" >
             {certificadoForm.id > 0 ? 'Editar' : 'Crear'}
           </Button>
           <NavLink
@@ -365,7 +344,7 @@ const estilos ={
             type="button"
             to={'/certificados'}
           >
-            <Button label="volver" severity="danger" icon="pi pi-times" />
+            <Button label="volver" severity="danger" icon="pi pi-times" className="btn btn-danger m-1" />
 
           </NavLink>
         </ButtonGroup>

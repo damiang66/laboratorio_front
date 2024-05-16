@@ -10,9 +10,12 @@ import { PrimeReactProvider, PrimeReactContext } from 'primereact/api';
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
      <PrimeReactProvider >
+     
     <BrowserRouter>
+    
  {/* esto se utiliza con context <AuthProvider> */}
         <UsersApp />
+        
  {/* </AuthProvider>*/}
     </BrowserRouter>
     </PrimeReactProvider>

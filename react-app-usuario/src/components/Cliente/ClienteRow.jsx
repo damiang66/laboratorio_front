@@ -22,7 +22,7 @@ export const ClienteRow = ({id,nombre,dni,edad,telefono,cargo,direccion,email}) 
 
             {!login.isAdmin ||
                 <>
-                    <td>
+                    <td style={{textAlign:'center'}}>
                     <FontAwesomeIcon icon={faPen} 
                      onClick={() => handlerClienteSelectedForm({
                         id,
@@ -37,18 +37,15 @@ export const ClienteRow = ({id,nombre,dni,edad,telefono,cargo,direccion,email}) 
                     />
                       
                     </td>
-                    <td> 
+                    <td style={{textAlign:'center'}}> 
                     <NavLink
-                   
-                          
-                            
                            to={"/certificados/cliente/"+id}
                         >
                            <FontAwesomeIcon icon={faSquarePlus} />
                         </NavLink>
                     </td>
                    
-                    <td>
+                    <td style={{textAlign:'center'}}>
                     <FontAwesomeIcon className='btn btn-danger btn-sm' onClick={() => handlerRemoveCliente(id)} icon={faTrash} />
                       
                        

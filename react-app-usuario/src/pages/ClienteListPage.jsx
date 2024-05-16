@@ -24,12 +24,15 @@ return (
 
         {!visibleForm ||
             <ClienteModalForm />}
-        <div className="container my-4">
-            <h2>Laboratorio app</h2>
+        <div className="p-4 bg-light bg-opacity-50"
+         style={{width:"80vw",
+         borderRadius:"0.5em"
+     }}>
+            <h2>Clientes</h2>
             <div className="row">
                 <div className="col">
                     {(visibleForm || !login.isAdmin) || 
-                     <Button  onClick={handlerOpenForm} label="Nuevo Cliente" />
+                     <Button  className='btn btn-primary m-1' onClick={handlerOpenForm} label="Nuevo Cliente" />
                    }
 
                     {

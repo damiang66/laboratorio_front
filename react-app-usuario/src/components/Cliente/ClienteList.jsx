@@ -58,19 +58,19 @@ const busqueda = () => {
             <thead>
                 <tr>
                     <th>#</th>
-                    <th>nombre</th>
-                    <th>dni</th>
-                    <th>edad</th>
-                    <th>telefono</th>
-                    <th>cargo</th>
-                    <th>direccion</th>
-                    <th>email</th>
+                    <th>Nombre</th>
+                    <th>DNI</th>
+                    <th>Edad</th>
+                    <th>Teléfono</th>
+                    <th>Cargo</th>
+                    <th>Dirección</th>
+                    <th>Email</th>
                     
                     {!login.isAdmin || <>
                     
-                        <th>editar</th>
-                        <th>Crear Certificado</th>
-                        <th>eliminar</th>
+                        <th style={{textAlign:'center'}}>Editar</th>
+                        <th style={{textAlign:'center'}}>Crear Certificado</th>
+                        <th style={{textAlign:'center'}}>Eliminar</th>
                     </>}
                 </tr>
             </thead>

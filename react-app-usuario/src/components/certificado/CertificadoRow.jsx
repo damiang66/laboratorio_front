@@ -34,7 +34,7 @@ let certificado ={id, certificadoNumero, fecha, ciudad, departamento, empresa, c
 
           {!login.isAdmin ||
               <>
-                  <td>
+                  <td style={{textAlign:'center'}}>
                       <NavLink
                       to={`/certificados/editar/${id}`}
                           type="button"
@@ -45,10 +45,10 @@ let certificado ={id, certificadoNumero, fecha, ciudad, departamento, empresa, c
                       </NavLink>
                   </td>
                  
-                  <td>
+                  <td style={{textAlign:'center'}}>
                   <FontAwesomeIcon  onClick={openModal} icon={faEye} />
                   </td>
-                 <td>
+                 <td style={{textAlign:'center'}}>
                  <FontAwesomeIcon icon={faTrash} 
                           type="button"
                           className="btn btn-danger btn-sm"

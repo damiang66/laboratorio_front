@@ -29,17 +29,15 @@ setUsuario(resp.data)
         }
     return (
         <table className="table table-hover table-striped">
-
             <thead>
                 <tr>
-                    <th>#</th>
-                    <th>Nombre de Usuario</th>
-                    <th>email</th>
-                 
+                    <th style={{width:"20%"}}>#</th>
+                    <th style={{width:"30%"}}>Nombre de Usuario</th>
+                    <th style={{width:"50%"}}>Email</th>
                     {!login.isCopado  || <>
-                        <th>editar</th>
-                        <th>editar route</th>
-                        <th>eliminar</th>
+                        <th style={{width:"5%"}}>Editar</th>
+                        {/* <th>editar route</th> */}
+                        <th style={{width:"5%"}}>Eliminar</th>
                     </>}
                 </tr>
             </thead>
@@ -57,8 +55,9 @@ setUsuario(resp.data)
                 }
             </tbody>
             <Button 
-          
-            type="button" label="Panel de Usuario" icon="pi pi-check"  onClick={() => panel()} />
+          className="btn btn-primary mx-1 my-3"
+            type="button" label="Panel de Usuario"   onClick={() => panel()} />
         </table>
+        
     )
 }

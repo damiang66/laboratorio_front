@@ -61,22 +61,18 @@ return (
           <thead>
               <tr>
                   <th>#</th>
-                  <th>certificado Numero</th>
-                  <th>fecha</th>
-                  <th>ciudad</th>
-                  <th>departamento</th>
-                  <th>empresa</th>
-                  <th>cliente</th>
-                  <th>diagnostico</th>
-                  <th>concepto</th>
-                
-                  
+                  <th>N°</th>
+                  <th>Fecha</th>
+                  <th>Ciudad</th>
+                  <th>Departamento</th>
+                  <th>Empresa</th>
+                  <th>Cliente</th>
+                  <th>Diagnostico</th>
+                  <th>Concepto</th>
                   {!login.isAdmin || <>
-                  
-                      <th>editar</th>
-                      
-                      <th>Ver</th>
-                      <th>eliminar</th>
+                      <th style={{textAlign:'center'}}>Editar</th>
+                      <th style={{textAlign:'center'}}>Ver</th>
+                      <th style={{textAlign:'center'}}>Eliminar</th>
                   </>}
               </tr>
           </thead>

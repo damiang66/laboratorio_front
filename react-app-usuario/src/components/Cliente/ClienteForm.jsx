@@ -62,7 +62,7 @@ export const ClienteForm = ({clienteSelected}) => {
         <form onSubmit={ onSubmit }>
             <input
                 className="form-control my-3 w-75"
-                placeholder="nombre y apellido"
+                placeholder="Nombre y Apellido"
                 name="nombre"
                 value={ nombre}
                 onChange={onInputChange} />
@@ -70,7 +70,7 @@ export const ClienteForm = ({clienteSelected}) => {
             
             { id > 0 || <input
                 className="form-control my-3 w-75"
-                placeholder="dni"
+                placeholder="DNI"
                 type="text"
                 name="dni"
                 value={dni}
@@ -86,25 +86,25 @@ export const ClienteForm = ({clienteSelected}) => {
             <p className="text-danger">{errors?.email}</p>
             <input
                 className="form-control my-3 w-75"
-                placeholder="edad"
+                placeholder="Edad"
                 name="edad"
                 value={edad}
                 onChange={onInputChange} />
                  <input
                 className="form-control my-3 w-75"
-                placeholder="telefono"
+                placeholder="Teléfono"
                 name="telefono"
                 value={telefono}
                 onChange={onInputChange} />
                  <input
                 className="form-control my-3 w-75"
-                placeholder="cargo"
+                placeholder="Cargo"
                 name="cargo"
                 value={cargo}
                 onChange={onInputChange} />
              <input
                 className="form-control my-3 w-75"
-                placeholder="direccion"
+                placeholder="Dirección"
                 name="direccion"
                 value={direccion}
                 onChange={onInputChange} />

@@ -65,34 +65,41 @@ setUsuario({
     }
   return (
   <>
-  <Card>
-  <div className="p-inputgroup flex-1">
+  <Card className="bg-light bg-opacity-50" style={{
+  width: "30vw",
+  marginTop: '100px',
+  display: 'flex',
+  justifyContent: 'center', // Centrado horizontal
+  alignItems: 'center', // Centrado vertical
+  
+}}>
+  <div className="p-inputgroup flex-1 m-2" >
     <span className="p-inputgroup-addon">
         <i className="pi pi-id-card"></i>
     </span>
-    <InputText name='id' value={usuario.id} placeholder="id" />
+    <InputText name='id' value={usuario.id} placeholder="id" disabled />
 </div>
- <div className="p-inputgroup flex-1">
+ <div className="p-inputgroup flex-1 m-2">
     <span className="p-inputgroup-addon">
         <i className="pi pi-user"></i>
     </span>
-    <InputText name='username' value={usuario.username} onChange={onChangeInput} placeholder="Username" />
+    <InputText name='username' value={usuario.username} onChange={onChangeInput} placeholder="Nombre de Usuario" />
 </div>
 
-<div className="p-inputgroup flex-1">
+<div className="p-inputgroup flex-1 m-2">
     <span className="p-inputgroup-addon">
         <i className="pi pi-lock"></i>
     </span>
-    <InputText name='password' value={usuario.password}  onChange={onChangeInput}placeholder="password" />
+    <InputText name='password' value={usuario.password}  onChange={onChangeInput}placeholder="Password" />
 </div>
-<div className="p-inputgroup flex-1">
+<div className="p-inputgroup flex-1 m-2">
     <span className="p-inputgroup-addon">
         <i className="pi pi-envelope"></i>
     </span>
     <InputText name='email' value={usuario.email} onChange={onChangeInput} placeholder="Email" />
 </div>
-<Button type="button" label="Editar" icon="pi pi-check"  onClick={() => cambiarPass()} />
-<Button type="button" label="Volver" icon="pi pi-check"  onClick={() => volver()} />
+<Button className="btn btn-primary m-2" type="button" label="Editar" icon="pi pi-check"  onClick={() => cambiarPass()} />
+<Button className="btn btn-primary m-2" type="button" label="Volver" icon="pi pi-check"  onClick={() => volver()} />
 </Card>
   
 

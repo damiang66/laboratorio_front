@@ -32,12 +32,12 @@ export const UserRow = ({ id, username, email, admin }) => {
                              <FontAwesomeIcon icon={faPen} />
                         </button>
                     </td>
-                    <td>
+                    {/* <td>
                         <NavLink className={'btn btn-secondary btn-sm'}
                             to={'/users/edit/' + id} >
                           <FontAwesomeIcon icon={faPen} />
                         </NavLink>
-                    </td>
+                    </td> */}
                     <td>
                         <button
                             type="button"
